@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
 gem 'puma', '~> 3.4.0'
-gem 'cucumber'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -22,23 +21,29 @@ gem 'turbolinks', '~> 5.0.1'
 gem 'jbuilder', '~> 2.4.1'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
+gem 'devise'
+gem 'cancancan'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.11'
-
+gem 'acts-as-taggable-on'
 # Use Unicorn as the app server
 # gem 'unicorn'
-
+#yuyin
+gem 'toastr-rails'
+#yuyin
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-
+#Read and parse emails
+gem 'mail'
+gem 'cancancan'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '~> 9.0.0', platform: :mri
   gem 'sqlite3', '~> 1.3.12'
 end
-
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'rails_admin', '>= 1.0.0.rc'
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -57,6 +62,14 @@ end
 
 group :production do
   gem 'pg', '0.18.4'
+end
+
+group :test do
+  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails-training-wheels' # some pre-fabbed step definitions  
+  gem 'database_cleaner' # to clear Cucumber's test database between runs
+  gem 'capybara'         # lets Cucumber pretend to be a web browser
+  gem 'launchy'          # a useful debugging aid for user stories
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

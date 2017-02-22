@@ -1,6 +1,22 @@
 Rails.application.routes.draw do
-  resources :emails
-  resources :users
+  resources :messages
+devise_for :users, controllers: {
+      sessions: 'users/sessions',
+      passwords: 'users/passwords',
+      registrations: 'users/registrations'
+  }
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  root 'static_pages#home'
+  get 'static_pages/home'
+
+  
+
+  
+  
+  
+  
+  
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

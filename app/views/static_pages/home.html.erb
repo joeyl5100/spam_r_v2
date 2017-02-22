@@ -1,22 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Workspace</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<h1>Email Archive</h1>
+<p>This will be an email archive for 
+    <a href= "http://www.cs.grinnell.edu/~rebelsky/Courses/CSC322/2017S/"> CSC322</a>
+</p>
 
-<%= yield %>
 
-</body>
-</html>
 <% if current_user.nil? %>
 	<%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
 <% else %>
 	<%= link_to app_dashboard_index_path, class: 'login-button' do %>Go to App<% end %>
 <% end %>
+
+
 <% if user_signed_in? %>
  
   <%= link_to('Edit registration', edit_user_registration_path) %>
@@ -27,8 +21,4 @@
   <%= link_to('Register', new_user_registration_path)  %>
   <%= link_to('Login', new_user_session_path)  %>  
  
-<% end %>
-
-<% if current_user.superadmin_role? || current_user.supervisor_role? %>
-	<p>Visible only for superadmins and supervisors! </p>
 <% end %>
