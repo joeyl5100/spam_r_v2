@@ -2,13 +2,13 @@
 <html>
   <head>
     <title><%= full_title(yield(:name)) %></title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>  
+    <%= render 'layouts/rails_default' %>
   </head>
   <body>
     <div class="container">
       <%= yield %>
+      <%=render 'layouts/flash_alerts' %>
     </div>
   </body>
 </html>
+
