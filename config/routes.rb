@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :messages
-devise_for :users, controllers: {
+  devise_for :users, controllers: {
       sessions: 'users/sessions',
       passwords: 'users/passwords',
       registrations: 'users/registrations'
