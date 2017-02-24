@@ -7,13 +7,13 @@
 
 <% if current_user.nil? %>
 	<%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
-<%# else %>
-	<%#= link_to app_dashboard_index_path, class: 'login-button' do %>Go to App<% end %>
-<%# end %>
+<% else %>
+	<%= link_to root_path, class: 'login-button' do %>Go to Home<% end %>
+<% end %>
 
 
 <% if user_signed_in? %>
- 
+   Logged in as <strong><%= current_user.email %></strong>.
   <%= link_to('Edit registration', edit_user_registration_path) %>
   <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
  

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222205113) do
+ActiveRecord::Schema.define(version: 20170223213747) do
 
   create_table "messages", force: :cascade do |t|
     t.string   "author"
@@ -34,6 +34,10 @@ ActiveRecord::Schema.define(version: 20170222205113) do
     t.boolean  "superadmin_role"
     t.boolean  "supervisor_role"
     t.boolean  "user_role"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

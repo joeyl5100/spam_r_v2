@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
 def after_sign_in_path_for(resource)
-    get 'static_pages/home'
+    root_path
 end
+
 end
