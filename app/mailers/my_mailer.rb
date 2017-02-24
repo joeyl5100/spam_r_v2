@@ -5,8 +5,8 @@ class MyMailer < Devise::Mailer
 
 def confirmation_instructions(record, token, opts={})
   headers["Custom_header"] = "Email Archive Email Confirmation"
-  opts[:from] = 'CSC322_email_archive@Grinnell.edu'
-  #opts[:reply_to] = 'CSC322_emailArchive@Grinnell.edu'
+  opts[:from] = 'csc322emailarchive@gmail.com' 
+  #opts[:reply_to] = 'csc322emailarchive@gmail.com'
   super
 end
 
