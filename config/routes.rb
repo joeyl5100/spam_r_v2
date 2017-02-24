@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       registrations: 'users/registrations',
       confirmations: 'confirmations' 
   }
+  
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'static_pages#home'
   get 'static_pages/home'
