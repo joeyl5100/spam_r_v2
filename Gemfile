@@ -35,7 +35,8 @@ gem 'toastr-rails'
 # gem 'capistrano-rails', group: :development
 
 #Read and parse emails
-gem 'mail'
+gem 'mail' #https://github.com/mikel/mail
+           #
 gem 'cancancan'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -5,9 +5,8 @@ Given following users exist:
   |    Uuser       |    Upassword   |    Upassword               |    user@email.com   |
   
   Scenario: View login page
-    Given User decides to view the archive
     When User accesses the webpage
-    Then User sees login page
+    Then User sees "Login" page
 
   Scenario: Logging in with an existing user account
     Given User is on Login page
