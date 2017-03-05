@@ -1,19 +1,20 @@
 Feature: Log into account
   
 Given following users exist:
-  |    username    |    password    |    passwordConfirmation    |    email    |
-  |    Uuser       |    Upassword   |    Upassword               |    user@email.com   |
+  |    email                    |    password    |    passwordConfirmation    |    email    |
+  |    Uuser@grinnell.edu       |    Upassword   |    Upassword               |    user@email.com   |
   
   Scenario: View login page
-    When User accesses the webpage
-    Then User sees "Login" page
+    Given I am not logged in
+    When I go to "Home" page
+    Then I go to "Login" page
 
   Scenario: Logging in with an existing user account
-    Given User is on Login page
-    When User fills in "Username" with "Uuser"
-    And User fills in "Password" with "Upassword"
-    And User clicks "Sign In"
-    Then User is sent to "User Home Page"
+    Given I am on Login page
+    When I fill in "email" with "Uuser@grinnell.edu"
+    And I fill in "password" with "Upassword"
+    And I click "Log in"
+    Then I am sent to "Home" page
     
   Scenario: Logging in with an existing admin account
     Given Admin is on Login page
@@ -23,18 +24,18 @@ Given following users exist:
     Then Admin is sent to "Admin Home Page"
 
   Scenario: Logging in without an existing account
-    Given User is on Login page
-    When User clicks "New Account"
-    Then User is sent to "Register New User"
+    Given I am on Login page
+    When I click "New Account"
+    Then I am sent to "Register New User"
     
   Scenario: Logging in with incorrect username information
-    Given User is on Login page
-    When User fills in "Username" with "notuser"
-    And User clicks "Sign In"
-    Then User is sent to "Wrong Credentials Page"
+    Given I am on Login page
+    When I fill in "Username" with "notuser"
+    And I click "Sign In"
+    Then I am sent to "Wrong Credentials Page"
     
   Scenario: Logging in with incorrect username information
-    Given User is on Login page
-    When User fills in "Password" with "notpassword"
-    And User clicks "Sign In"
-    Then User is sent to "Wrong Credentials Page"
+    Given I am on Login page
+    When I fill in "Password" with "notpassword"
+    And I click "Sign In"
+    Then I am sent to "Wrong Credentials Page"

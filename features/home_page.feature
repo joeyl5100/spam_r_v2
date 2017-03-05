@@ -2,7 +2,6 @@ Feature: Viewing home page
   
   Scenario: Viewing home page
     Given User is on "User Home Page"
-    When User views webpage content
     Then User sees 25 most recent emails
     
   Scenario: Clicking on link

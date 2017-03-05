@@ -9,6 +9,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'https://spam-r-v2-lederman17.c9users.io' }
 
   config.action_mailer.delivery_method = :smtp
+  
+  
   config.action_mailer.smtp_settings = {
     user_name:     'csc322emailarchive@gmail.com',
     password:      'password12345',
@@ -33,7 +35,7 @@ Rails.application.configure do
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
-  # Raise an error on page load if there are pending migrations.
+  # Raise an error on page load if there are pending migrations
   config.active_record.migration_error = :page_load
 
   # Debug mode disables concatenation and preprocessing of assets.
