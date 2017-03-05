@@ -1,15 +1,15 @@
 Feature: Viewing home page
   
   Scenario: Viewing home page
-    Given User is on "User Home Page"
-    Then User sees 25 most recent emails
+    Given I am on Home page
+    Then I see 25 most recent emails
     
   Scenario: Clicking on link
-    Given User is on "User Home Page"
-    When User clicks "View" of "Post 1"
-    Then User is sent to "Post 1" page
+    Given I am on Home page
+    When I press "View" of "Post 1"
+    Then I go to "Post 1" page
     
   Scenario: Clicking on new link
-    Given User is on "User Home Page"
-    When User clicks "View" of "Title"
-    Then User is sent to "Title" page
+    Given I am on Home page
+    When I press "View" of "Title"
+    Then I go to "Title" page

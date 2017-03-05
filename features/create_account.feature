@@ -1,9 +1,9 @@
 Feature: Create new account
   
   Scenario: Accessing New Account page
-    Given User is on "Login Page"
-    When User clicks "Create New Account"
-    Then User is sent to "New Account Page"
+    Given I am on Login page
+    When I follow "Sign up"
+    Then I go to Sign up page
     
     #####FIX
   Scenario: Entering in information

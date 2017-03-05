@@ -11,31 +11,35 @@ Given following users exist:
 
   Scenario: Logging in with an existing user account
     Given I am on Login page
-    When I fill in "email" with "Uuser@grinnell.edu"
-    And I fill in "password" with "Upassword"
-    And I click "Log in"
-    Then I am sent to "Home" page
+    When I fill in "Email" with "Uuser@grinnell.edu"
+    And I fill in "Password" with "Upassword"
+    And I press "Log in"
+    Then I go to "Home" page
     
   Scenario: Logging in with an existing admin account
-    Given Admin is on Login page
-    When Admin fills in "Username" with "Auser"
-    And Admin fills in "Password" with "Apassword"
-    And Admin clicks "Sign In"
-    Then Admin is sent to "Admin Home Page"
+    Given I am on Login page
+    When I fill in "Email" with "Auser@grinnell.edu"
+    And I fill in "Password" with "Apassword"
+    And I press "Log in"
+    Then I go to "Admin Home Page"
 
   Scenario: Logging in without an existing account
     Given I am on Login page
-    When I click "New Account"
-    Then I am sent to "Register New User"
+    When I follow "Sign up"
+    Then I go to "Register New User"
     
   Scenario: Logging in with incorrect username information
     Given I am on Login page
-    When I fill in "Username" with "notuser"
-    And I click "Sign In"
-    Then I am sent to "Wrong Credentials Page"
+    When I fill in "Email" with "notuser@grinnell.edu"
+    And I press "Log in"
+    Then I go to "Home" page
+    And I see sign in message
+    And I see invalid error message
     
   Scenario: Logging in with incorrect username information
     Given I am on Login page
     When I fill in "Password" with "notpassword"
-    And I click "Sign In"
-    Then I am sent to "Wrong Credentials Page"
+    And I press "Log in"
+    Then I go to "Home" page
+    And I see sign in message
+    And I see invalid error message

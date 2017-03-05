@@ -27,6 +27,10 @@ Given(/^I am on Login page$/) do
   visit path_to("Login")
 end
 
+Given(/^I am on Home page$/) do 
+  visit path_to("Home")
+end
+
 Given /^I am logged in as admin$/ do
   UserSession.create!(User.find_by_email!('admin@example.com'))
 end
@@ -124,6 +128,16 @@ end
 
 Then(/^User sees (\d+) most recent emails$/) do |arg1|
     pending
+end
+
+And(/^I see invalid error message$/) do
+  page.should have_css('.flashalert', text: "Invalid Email or password.")
+  
+  #expect(users.errors.message[:email]).to eq ['is invalid']
+end
+
+Then(/^I see sign in message$/) do
+  page.should have_css('.alert', text: "You need to sign in or sign up before continuing.")
 end
 
 Then /^(?:|I )should not see "([^"]*)"$/ do |text|
