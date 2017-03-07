@@ -8,6 +8,7 @@ Given following users exist:
     Given I am not logged in
     When I go to "Home" page
     Then I go to "Login" page
+    #And I see sign in message
 
   Scenario: Logging in with an existing user account
     Given I am on Login page
@@ -32,14 +33,12 @@ Given following users exist:
     Given I am on Login page
     When I fill in "Email" with "notuser@grinnell.edu"
     And I press "Log in"
-    Then I go to "Home" page
-    And I see sign in message
-    And I see invalid error message
+    Then I go to "Login" page
+    #And I see invalid error message
     
   Scenario: Logging in with incorrect username information
     Given I am on Login page
     When I fill in "Password" with "notpassword"
     And I press "Log in"
-    Then I go to "Home" page
-    And I see sign in message
-    And I see invalid error message
+    Then I go to "Login" page
+    #And I see invalid error message

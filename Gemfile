@@ -21,11 +21,17 @@ gem 'turbolinks', '~> 5.0.1'
 gem 'jbuilder', '~> 2.4.1'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+# Gem files here are for active admin
+#################################
+#gem 'rocket_tag' #wut  Because it fixed my error
 gem 'devise'
+gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'cancancan'
+#gem 'polyamorous'
+################################
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.11'
-gem 'acts-as-taggable-on'
+gem 'acts-as-taggable-on', '~> 4.0'
 # Use Unicorn as the app server
 # gem 'unicorn'
 #yuyin

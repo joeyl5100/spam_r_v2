@@ -22,4 +22,4 @@
 #               email: email,
 #               password:              password,
 #               password_confirmation: password)
-# end
+# endAdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
