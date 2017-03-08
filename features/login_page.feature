@@ -30,13 +30,13 @@ Given following users exist:
     Then I go to Register page
     
   Scenario: Logging in with incorrect username information
-    Given User is on Login page
-    When User fills in "Username" with "notuser"
-    And User clicks "Sign In"
-    Then User is sent to "Wrong Credentials Page"
+    Given I am on Login page
+    When I fill in "Email" with "notuser"
+    And I press "Log in"
+    Then I go to Login page
     
   Scenario: Logging in with incorrect username information
-    Given User is on Login page
-    When User fills in "Password" with "notpassword"
-    And User clicks "Sign In"
-    Then User is sent to "Wrong Credentials Page"
+    Given I am on Login page
+    When I fill in "Password" with "notpassword"
+    And I press "Log in"
+    Then I go to Login page
