@@ -53,6 +53,4 @@ end
 #  return trimmedText
 #end
 
-
-
 end
