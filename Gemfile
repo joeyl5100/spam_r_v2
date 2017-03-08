@@ -59,6 +59,9 @@ group :test do
   gem 'minitest-reporters',       '1.1.9'
   gem 'guard',                    '2.13.0'
   gem 'guard-minitest',           '2.4.4'
+  #gem 'cucumber-rails', :require => false
+  # database_cleaner is not required, but highly recommended
+  #gem 'database_cleaner'
 end
 
 group :production do
