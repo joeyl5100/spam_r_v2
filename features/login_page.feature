@@ -1,9 +1,9 @@
 Feature: Log into account
   
 Given following users exist:
-  |    email                    |    password    |    passwordConfirmation    |    email    |
-  |    Uuser@grinnell.edu       |    Upassword   |    Upassword               |    user@email.com   |
-  |    Auser@grinnell.edu       |    Apassword   |    Apassword               |             |
+  |    email                    |    password    |    passwordConfirmation    |
+  |    Uuser@grinnell.edu       |    Upassword   |    Upassword               |
+  |    Auser@grinnell.edu       |    Apassword   |    Apassword               |
   
   Scenario: View login page
     Given I am not logged in
