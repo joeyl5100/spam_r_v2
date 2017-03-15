@@ -13,6 +13,8 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+@usersession
+
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }
@@ -28,15 +30,28 @@ Given /^(?:|I )am on (.+)$/ do |page_name|
 end
 
 Given /^I am logged in as admin$/ do
-  UserSession.create!(User.find_by_email!('admin@example.com'))
+  @usersession = UserSession.create!(User.find_by_email!('admin@example.com'))
 end
 
 Given /^I am logged in as not_admin$/ do
-  UserSession.create!(User.find_by_email!('notadmin@example.com'))
+  @usersession = UserSession.create!(User.find_by_email!('notadmin@example.com'))
 end
 
 Given "I am not logged in" do
-  UserSession.find.try(:destroy)
+  #UserSession.find.try(:destroy)
+  if @usersession != nil
+    @usersession.find.try(:destroy)
+  end
+end
+
+Given /^I am not signed in$/ do
+  current_driver = Capybara.current_driver
+  begin
+    Capybara.current_driver = :rack_test
+    page.driver.submit :delete, "/users/sign_out", {}
+  ensure
+    Capybara.current_driver = current_driver
+  end
 end
 
 When /^(?:|I )go to (.+)$/ do |page_name|
