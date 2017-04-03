@@ -52,8 +52,25 @@ def getContent(mail)
   return trimmedText
 end
 
+# subject: [CS Table, Internship] This is ...
 def addtag(message)
-  
+  sub = message.subject.downcase
+  tags = /[\[].*[\]]/.match(sub)
+  tags = tags[0][1..tags[0].length-2]
+  tagArr = tags.split(',')
+  tagArr.each do |tag|
+    if tag == "cs extra" || tag == "cs extras" || tag == "csextra" || tag == "csextras"
+      message.tag_list.add("CS Extra")
+    elsif tag == "cs table" || tag == "cstable"
+      message.tag_list.add("CS Table")
+    elsif tag == "internship"
+      message.tag_list.add("Internship")
+    elsif tag == "job"
+      message.tag_list.add("Job")
+    else
+      message.tag_list.add("Misc.")
+    end
+  end
 end
 
 
