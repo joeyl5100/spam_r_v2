@@ -45,8 +45,9 @@ def getContent(mail)
   # regex expression to parse email body
   nokogiriMail = /\n-->.*--_000/m.match(Nokogiri::HTML(mail.body.decoded).text)
   # How to cut off front and back of regex
-  trimmedText = nokogiriMail[0][8..nokogiriMail[0].length - 20]
-  
+  trimmedText = nokogiriMail[0][8..nokogiriMail[0].length - 12]
+  conversions = {'92' => '\'', '85' => '...', 'E9' => 'é'}
+  trimmedText.gsub!(/=([0-9A-F]+)/) {|s| conversions[$1] }
   return trimmedText
 end
 
