@@ -25,7 +25,10 @@ gem 'devise'
 gem 'cancancan'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.11'
+
+#tagging gem
 gem 'acts-as-taggable-on'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 #yuyin
@@ -78,5 +81,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-
