@@ -32,6 +32,7 @@ def getMail()
       message.content = mail.getContent(mail)
       message.created_at = mail.date.to_s
       message.updated_at = Time.now.strftime("%Y-%m-%d %H:%M")
+      addtag(message)
       message.save
       id += 1
     else
@@ -50,6 +51,11 @@ def getContent(mail)
   trimmedText.gsub!(/=([0-9A-F]+)/) {|s| conversions[$1] }
   return trimmedText
 end
+
+def addtag(message)
+  
+end
+
 
 #def getContentGmail(mail)
 #  str = mail.body.decoded
