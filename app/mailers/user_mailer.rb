@@ -21,7 +21,6 @@ end
 # method to grab mail info from each file
 
 def getMail()
-
   id = Message.count
   Mail.all.each do |mail|
     if(mail != []) #check to see if array is not empty
@@ -32,7 +31,7 @@ def getMail()
       message.content = mail.getContent(mail)
       message.created_at = mail.date.to_s
       message.updated_at = Time.now.strftime("%Y-%m-%d %H:%M")
-      addtag(message)
+      addTag(message)
       message.save
       id += 1
     else
@@ -53,23 +52,27 @@ def getContent(mail)
 end
 
 # subject: [CS Table, Internship] This is ...
-def addtag(message)
+def addTag(message)
   sub = message.subject.downcase
-  tags = /[\[].*[\]]/.match(sub)
+  tags = /[{].*[}]/.match(sub)
   tags = tags[0][1..tags[0].length-2]
   tagArr = tags.split(',')
   tagArr.each do |tag|
-    if tag == "cs extra" || tag == "cs extras" || tag == "csextra" || tag == "csextras"
+    if tag.include? "cs extra"
       message.tag_list.add("CS Extra")
-    elsif tag == "cs table" || tag == "cstable"
+    elsif tag.include? "cs table"
       message.tag_list.add("CS Table")
-    elsif tag == "internship"
+    elsif tag.include? "internship"
       message.tag_list.add("Internship")
-    elsif tag == "job"
+    elsif tag.include? "job"
       message.tag_list.add("Job")
     else
       message.tag_list.add("Misc.")
     end
+    
+    # alternatively, we could just do message.tag_list.add(tag.strip)
+    # for more adaptability
+    
   end
 end
 
