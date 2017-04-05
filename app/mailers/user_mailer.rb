@@ -48,6 +48,9 @@ def getContent(mail)
   trimmedText = nokogiriMail[0][8..nokogiriMail[0].length - 12]
   conversions = {'92' => '\'', '85' => '...', 'E9' => 'é'}
   trimmedText.gsub!(/=([0-9A-F]+)/) {|s| conversions[$1] }
+  trimmedText.squeeze!("\n")
+  trimmedText.gsub!("=\n", "")
+  trimmedText.gsub!("&nbsp;", "")
   return trimmedText
 end
 
