@@ -55,25 +55,28 @@ end
 def addTag(message)
   sub = message.subject.downcase
   tags = /[{].*[}]/.match(sub)
-  tags = tags[0][1..tags[0].length-2]
-  tagArr = tags.split(',')
-  tagArr.each do |tag|
-    if tag.include? "cs extra"
-      message.tag_list.add("CS Extra")
-    elsif tag.include? "cs table"
-      message.tag_list.add("CS Table")
-    elsif tag.include? "internship"
-      message.tag_list.add("Internship")
-    elsif tag.include? "job"
-      message.tag_list.add("Job")
-    else
-      message.tag_list.add("Misc.")
+  if !tags.nil?
+    tags = tags[0][1..tags[0].length-2]
+    tagArr = tags.split(',')
+    tagArr.each do |tag|
+     if tag.include? "cs extra"
+        message.tag_list.add("CS Extra")
+      elsif tag.include? "cs table"
+        message.tag_list.add("CS Table")
+      elsif tag.include? "internship"
+        message.tag_list.add("Internship")
+      elsif tag.include? "job"
+        message.tag_list.add("Job")
+      else
+        message.tag_list.add("Misc.")
+      end
     end
+  else
+    message.tag_list.add("Misc.")
+  end
     
     # alternatively, we could just do message.tag_list.add(tag.strip)
     # for more adaptability
-    
-  end
 end
 
 
