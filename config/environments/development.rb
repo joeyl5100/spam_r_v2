@@ -6,7 +6,7 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   
 
-  config.action_mailer.default_url_options = { host: 'https://spam-r-v2-lederman17.c9users.io' }
+  config.action_mailer.default_url_options = { host: 'https://myown-yuyin.c9users.io' }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
