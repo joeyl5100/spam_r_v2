@@ -1,9 +1,18 @@
 <% provide(:name, "Email Archive") %>
 <h1>Email Archive</h1>
-<p>This will be an email archive for 
-    <a href= "http://www.cs.grinnell.edu/~rebelsky/Courses/CSC322/2017S/"> CSC322</a>
-</p>
 
+<%= form_tag(messages_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Message" %>
+  <%= submit_tag "Search", :name => nil %>
+<% end %>
+
+<% if !params[:search].nil? %>
+  <% if @message.present? %>
+    <%= render @message %>
+  <% else %>
+    <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+  <% end %>
+<% end %>
 
 <% if current_user.nil? %>
 	<%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
