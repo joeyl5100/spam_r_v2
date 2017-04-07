@@ -23,7 +23,8 @@ end
 def getMail()
   id = Message.count
   Mail.all.each do |mail|
-    if(mail != []) #check to see if array is not empty
+    #check to see if array is not empty and author is from grinnell domain
+    if((mail != []) && (mail.from.include? ("@grinnell.edu")))
       message = Message.new
       message.id = id
       message.subject = mail.subject
@@ -77,7 +78,6 @@ def addTag(message)
   else
     message.tag_list.add("Misc.")
   end
-    
     # alternatively, we could just do message.tag_list.add(tag.strip)
     # for more adaptability
 end
