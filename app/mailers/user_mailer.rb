@@ -24,11 +24,11 @@ def getMail()
   id = Message.count
   Mail.all.each do |mail|
     #check to see if array is not empty and author is from grinnell domain
-    if((mail != []) && (mail.from.include? ("@grinnell.edu")))
+    if((mail != []) && (mail.from[0].include? ("@grinnell.edu")))
       message = Message.new
       message.id = id
       message.subject = mail.subject
-      message.author = mail.from
+      message.author = mail.from[0]
       message.content = mail.getContent(mail)
       message.created_at = mail.date.to_s
       message.updated_at = Time.now.strftime("%Y-%m-%d %H:%M")
