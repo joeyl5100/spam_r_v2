@@ -35,8 +35,6 @@ def getMail()
       addTag(message)
       message.save
       id += 1
-    else
-      puts "No emails in inbox"
     end
   end
 end
