@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_action :authenticate_user!
+  #This line has been commented out due to issues with it redirecting - disallowing the admin from logging in successfully 
+  #before_action :authenticate_user!, :accept => [:admin_users, :admin]
 
 def after_sign_in_path_for(resource)
     root_path
