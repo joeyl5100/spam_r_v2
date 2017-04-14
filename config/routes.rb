@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get 'static_pages/home'
   
-
+# post 'inbox', :to => 'static_pages#inbox', :as => :static_pages_inbox
   
   
   

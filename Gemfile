@@ -44,7 +44,11 @@ gem 'toastr-rails'
 #Read and parse emails
 gem 'mail' #https://github.com/mikel/mail
            #
-gem 'whenever', :require => false
+           
+gem 'mail_room'
+gem 'faraday', '>= 0.8.9'
+
+gem 'rufus-scheduler'
 
 
 group :development, :test do

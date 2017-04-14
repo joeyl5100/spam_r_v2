@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Tags:</strong>
+  <%= @message.tag_list %>
+</p>
+
+<p>
   <strong>Author:</strong>
   <%= @message.author %>
 </p>
@@ -13,6 +18,11 @@
 <p>
   <strong>Content:</strong>
   <%= @message.content %>
+</p>
+
+<p>
+  <strong>Time Created:</strong>
+  <%= @message.created_at %>
 </p>
 
 <%= link_to 'Edit', edit_message_path(@message) %> |
