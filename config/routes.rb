@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   resources :messages
   devise_for :users, controllers: {
       sessions: 'users/sessions',
@@ -11,7 +13,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get 'static_pages/home'
   
-
+# post 'inbox', :to => 'static_pages#inbox', :as => :static_pages_inbox
   
   
   
