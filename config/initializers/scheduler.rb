@@ -2,7 +2,8 @@ require 'rufus-scheduler'
 
 scheduler = Rufus::Scheduler.new
 
-scheduler.in '10s' do
-  UserMailer.getMail     
+scheduler.every '1h' do
+  mailer = UserMailer.new
+  mailer.getMail     
   puts 'Test'
 end

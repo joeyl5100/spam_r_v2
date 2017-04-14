@@ -19,24 +19,25 @@ class UserMailer < ApplicationMailer
   #end
   
   # method to grab mail info from each file
-  def getMail()
+  def getMail
     id = Message.count
     allMail = Mail.all
-    allMail.each do |mail| unless allMail.empty? 
-      #check to see if array is not empty and author is from grinnell domain
-      if mail.from[0].include? ("@grinnell.edu")
-        message = Message.new
-        message.id = id
-        message.subject = mail.subject
-        message.author = mail.from[0]
-        message.content = mail.getContent(mail)
-        message.created_at = mail.date.to_s
-        message.updated_at = Time.now.strftime("%Y-%m-%d %H:%M")
-        addTag(message)
-        message.save
-        id += 1
+    if (!allMail.empty?)
+      allMail.each do |mail|
+        #check to see if array is not empty and author is from grinnell domain
+        if mail.from[0].include? ("@grinnell.edu")
+          message = Message.new
+          message.id = id
+          message.subject = mail.subject
+          message.author = mail.from[0]
+          message.content = getContent(mail)
+          message.created_at = mail.date.to_s
+          message.updated_at = Time.now.strftime("%Y-%m-%d %H:%M")
+          addTag(message)
+          message.save
+          id += 1
+        end
       end
-    end
     end
   end
   
