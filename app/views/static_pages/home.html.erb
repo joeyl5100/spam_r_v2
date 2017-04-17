@@ -1,16 +1,20 @@
 <% provide(:name, "Email Archive") %>
 <h1>Email Archive</h1>
-<%= form_tag(messages_path, :method => "get", id: "search-form") do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search Message" %>
-  <%= submit_tag "Search", :name => nil %>
-<% end %>
+<% @search = Message.search(params[:q]) %>
+<%= search_form_for @search, url: '/static_pages/search' do |f| %>
 
-<% if !params[:search].nil? %>
-  <% if @message.present? %>
-    <%= render @message %>
-  <% else %>
-    <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
-  <% end %>
+  <%= f.label :author %>
+  <%= f.search_field :author_cont %>
+  <br/>
+  <%= f.label :subject %>
+  <%= f.search_field :subject_cont %>
+  <br/>
+  <%= f.label :content %>
+  <%= f.search_field :content_cont %>
+  <br/>
+  <%= f.submit %>
+  <br/>
+  <br/>
 <% end %>
 
 <p>Email archive updates every hour</p>

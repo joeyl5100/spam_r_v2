@@ -366,6 +366,7 @@ DEPENDENCIES
   rails (~> 5.0.1)
   rails-controller-testing (= 0.1.1)
   rails_admin (>= 1.0.0.rc)
+  ransack
   remotipart!
   rufus-scheduler
   sass-rails (~> 5.0)

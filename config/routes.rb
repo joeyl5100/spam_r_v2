@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'static_pages#home'
   get 'static_pages/home'
+  get 'static_pages/search' #maybe
   
 # post 'inbox', :to => 'static_pages#inbox', :as => :static_pages_inbox
   

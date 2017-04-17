@@ -1,0 +1,14 @@
+<% @results = Message.ransack(params[:q]).result %>
+<% if @results.length > 0 %>
+  <div class="one">
+  <% @results.each do |message| %>
+  <b> <%= message.author %></b>
+  <i> <%= message.subject %></i>
+  <i> <%= message.content %></i>
+  <i> <%= message.tag_list %></i>
+  <br/>
+  <% end %>
+  </div>
+  <% else %>
+  <div class="two">No results. Try searching for something else.</div>
+<% end %>
