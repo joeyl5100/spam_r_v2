@@ -39,7 +39,7 @@ class UserMailer < ApplicationMailer
     # regex expression to parse email body
     nokogiriMail = /\n-->.*--_000/m.match(Nokogiri::HTML(mail.body.decoded).text)
     noko = nokogiriMail[0]
-    
+
     # How to cut off front and back of regex
     trimmedText = noko[8..noko.length - 12]
     
