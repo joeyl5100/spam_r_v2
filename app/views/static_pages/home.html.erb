@@ -1,6 +1,5 @@
 <% provide(:name, "Email Archive") %>
 <h1>Email Archive</h1>
-
 <%= form_tag(messages_path, :method => "get", id: "search-form") do %>
   <%= text_field_tag :search, params[:search], placeholder: "Search Message" %>
   <%= submit_tag "Search", :name => nil %>
@@ -14,6 +13,7 @@
   <% end %>
 <% end %>
 
+<p>Email archive updates every hour</p>
 <% if current_user.nil? %>
 	<%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
 <% else %>
