@@ -38,9 +38,9 @@ class UserMailer < ApplicationMailer
   def getContent(mail)
     # regex expression to parse email body
     nokogiriMail = /\n-->.*--_000/m.match(Nokogiri::HTML(mail.body.decoded).text)
-    
+    noko = nokogiriMail[0]
     # How to cut off front and back of regex
-    trimmedText = nokogiriMail[0][8..nokogiriMail[0].length - 12]
+    trimmedText = noko[8..noko.length - 12]
     
     #Converts some characters back to what they should be
     conversions = {'92' => '\'', '85' => '...', 'E9' => 'é'}
