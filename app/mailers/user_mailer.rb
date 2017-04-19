@@ -37,10 +37,10 @@ class UserMailer < ApplicationMailer
   # helper method to extract body from email sent by grinnell.edu account
   def getContent(mail)
     # regex expression to parse email body
-    nokogiriMail = /\n-->.*--_000/m.match(Nokogiri::HTML(mail.body.decoded).text)
+    nokogiriMail = /\n-->.*--_000/m.match(Nokogiri::HTML(mail.body.decoded).text)[0]
     
     # How to cut off front and back of regex
-    trimmedText = nokogiriMail[0][8..nokogiriMail[0].length - 12]
+    trimmedText = nokogiriMail[8..nokogiriMail.length - 12]
     
     #Converts some characters back to what they should be
     conversions = {'92' => '\'', '85' => '...', 'E9' => 'é'}
