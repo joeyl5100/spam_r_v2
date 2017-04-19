@@ -1,6 +1,9 @@
-<p id="notice"><%= notice %></p>
+<% @results = Message.ransack(params[:q]).result %>
+<% if @results.length <= 0 %>
 
-<h1>Messages</h1>
+  <div class="two">No results. Try searching for something else.</div>
+  <%= link_to 'Home', root_path %>
+<% else %>
 
 <table>
   <thead>
@@ -13,9 +16,9 @@
       <th colspan="5"></th>
     </tr>
   </thead>
-
+  
   <tbody>
-    <% Message.all.each do |message| %>
+    <% @results.each do |message| %>
       <tr>
         <td><%= message.tag_list%></td>
         <td><%= message.author %></td>
@@ -29,8 +32,6 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
 <%= link_to 'Home', root_path %>
-<%= link_to 'New Message', new_message_path %>
+
+<% end %>

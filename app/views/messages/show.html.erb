@@ -1,19 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Author:</strong>
-  <%= @message.author %>
-</p>
+<mcontainer>
+<!--  <p style="text-align:left;"> <h3><%= @message.subject %>  </h3>
+<span style="float:right;"><%= @message.created_at %></span>
+</p> -->
 
-<p>
-  <strong>Subject:</strong>
-  <%= @message.subject %>
-</p>
+<h3 style="text-align:left;float:left;"><%= @message.subject %>  </h3>
+<span style="text-align:right;float:right;"><%= @message.created_at %></span>
 
-<p>
-  <strong>Content:</strong>
+<br style="clear:both;"/>
+
+<strong style="text-align:left;float:left;padding-bottom:8px"> <%= @message.author %> </strong>
+
+<hr style="clear:both;"/>
+
+<ccontainer>
   <%= @message.content %>
-</p>
+</ccontainer>
 
-<%= link_to 'Edit', edit_message_path(@message) %> |
+<div style="text-align:left;float:left;">
+  <strong>Tags:</strong>
+  <%= @message.tag_list %>
+</div>
+<span style="text-align:right;float:right;">
+  <%= link_to 'Edit', edit_message_path(@message) %> |
 <%= link_to 'Back', messages_path %>
+</span>
+</mcontainer>
