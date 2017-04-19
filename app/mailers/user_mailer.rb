@@ -23,10 +23,11 @@ class UserMailer < ApplicationMailer
           message.id = id
           message.subject = mail.subject
           message.author = mail.from[0]
-          message.content = getContent(mail)
+          message.content = getContent(mail.body.decoded)
           message.created_at = mail.date.to_s
           message.updated_at = Time.now.strftime("%Y-%m-%d %H:%M")
           addTag(message)
+          message.tag_list.sort!
           message.save
           id += 1
         end
@@ -34,14 +35,20 @@ class UserMailer < ApplicationMailer
     end
   end
   
+  # remove csstudent and tags from the subject
+  def trimSubject(message)
+    noCss = message.subject.sub("[csstudents]", "")
+    noTag = noCss.sub(/\{.*\}\s/, "").strip
+  end
+  
   # helper method to extract body from email sent by grinnell.edu account
-  def getContent(mail)
+  def getContent(body)
     # regex expression to parse email body
-    nokogiriMail = /\n-->.*--_000/m.match(Nokogiri::HTML(mail.body.decoded).text)
+    nokogiriMail = /\n-->.*--_000/m.match(Nokogiri::HTML(body).text)
     noko = nokogiriMail[0]
 
     # How to cut off front and back of regex
-    trimmedText = noko[8..noko.length - 12]
+    trimmedText = noko[8..-12]
     
     #Converts some characters back to what they should be
     conversions = {'92' => '\'', '85' => '...', 'E9' => 'é'}
@@ -59,7 +66,7 @@ class UserMailer < ApplicationMailer
     sub = message.subject.downcase
     tags = /[{].*[}]/.match(sub)
     if !tags.nil?
-      tags = tags[0][1..tags[0].length-2]
+      tags = tags[0][1..-2]
       tagArr = tags.split(',')
       tagArr.each do |tag|
        if tag.include? "cs extra"
