@@ -28,6 +28,7 @@ class UserMailer < ApplicationMailer
           message.updated_at = Time.now.strftime("%Y-%m-%d %H:%M")
           addTag(message)
           message.tag_list.sort!
+          saveAttachments(mail)
           message.save
           id += 1
         end
@@ -75,5 +76,18 @@ class UserMailer < ApplicationMailer
       message.tag_list.add("Misc.")
     end
   end
+
+def saveAttachments(mail)
+  mail.attachments.each do | attachment |
+    # Attachments is an AttachmentsList object containing a
+    # number of Part objects
+    filename = attachment.filename
+    begin
+      File.open(filename, "w+b", 0644) {|f| f.write attachment.body.decoded}
+    rescue => e
+      puts "Unable to save data for #{filename} because #{e.message}"
+    end
+  end
+end
 
 end
