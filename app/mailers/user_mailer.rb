@@ -43,29 +43,12 @@ class UserMailer < ApplicationMailer
   end
   
   def getContent(mail)
-<<<<<<< HEAD
-    # regex expression to parse email body
-    nokogiriMail = /\n-->.*--_000/m.match(Nokogiri::HTML(mail.body.decoded).text)[0]
-    
-    # How to cut off front and back of regex
-    trimmedText = nokogiriMail[8..nokogiriMail.length - 12]
-    
-    #Converts some characters back to what they should be
-    conversions = {'92' => '\'', '85' => '...', 'E9' => 'é'}
-    trimmedText.gsub!(/=([0-9A-F]+)/) {|s| conversions[$1] }
-    #Styling (remove newlines)
-    trimmedText.squeeze!("\n")
-    trimmedText.gsub!("=\n", "")
-    trimmedText.gsub!("&nbsp;", "")
-    return trimmedText
-=======
   #Converts some characters back to what they should be
     text = mail.text_part.body.decoded
     text.encode!("UTF-8", "Windows-1252")
   #remove excess newlines 
     text.squeeze!("\n")
     return text
->>>>>>> 7cc998c1476298f973119dc68a5a8d4fe9219f0d
   end
   
   # Add tags using subject
