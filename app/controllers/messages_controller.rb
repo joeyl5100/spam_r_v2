@@ -76,4 +76,5 @@ class MessagesController < ApplicationController
     @search = Message.search(params[:q])
     @products = @search.result
   end
+  
 end

@@ -1,7 +1,7 @@
 <% provide(:name, "Email Archive") %>
 <h1>Email Archive</h1>
 <% @search = Message.search(params[:q]) %>
-<%= search_form_for @search, url: '/static_pages/search' do |f| %>
+<%= search_form_for @search, url: search_path do |f| %>
 
   <%= f.label :author %>
   <%= f.search_field :author_cont %>
@@ -17,7 +17,20 @@
   <br/>
 <% end %>
 
-<p>Email archive updates every hour</p>
+<h6>Tags</h6>
+<%= button_to "CS Extra", csextra_path, method: :get %>
+<%= button_to "CS Table", cstable_path, method: :get %>
+<%= button_to "Internship", internship_path, method: :get %>
+<%= button_to "Job", job_path, method: :get %>
+<%= button_to "Misc.", misc_path, method: :get %>
+
+<body>
+  <br>
+  Email archive updates every hour. Emails do not contain attachments.
+  <br>
+  <br>
+</body>
+
 <% if current_user.nil? %>
 	<%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
 <% else %>
