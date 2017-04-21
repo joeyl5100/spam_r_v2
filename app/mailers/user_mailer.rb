@@ -23,7 +23,7 @@ class UserMailer < ApplicationMailer
           message.id = id
           message.subject = mail.subject
           message.author = mail.from[0]
-          message.content = getContent(mail.body.decoded)
+          message.content = getContent(mail)
           message.created_at = mail.date.to_s
           message.updated_at = Time.now.strftime("%Y-%m-%d %H:%M")
           addTag(message)
@@ -41,23 +41,13 @@ class UserMailer < ApplicationMailer
     noTag = noCss.sub(/\{.*\}\s/, "").strip
   end
   
-  # helper method to extract body from email sent by grinnell.edu account
-  def getContent(body)
-    # regex expression to parse email body
-    nokogiriMail = /\n-->.*--_000/m.match(Nokogiri::HTML(body).text)
-    noko = nokogiriMail[0]
-
-    # How to cut off front and back of regex
-    trimmedText = noko[8..-12]
-    
-    #Converts some characters back to what they should be
-    conversions = {'92' => '\'', '85' => '...', 'E9' => 'é'}
-    trimmedText.gsub!(/=([0-9A-F]+)/) {|s| conversions[$1] }
-    #Styling (remove newlines)
-    trimmedText.squeeze!("\n")
-    trimmedText.gsub!("=\n", "")
-    trimmedText.gsub!("&nbsp;", "")
-    return trimmedText
+  def getContent(mail)
+  #Converts some characters back to what they should be
+    text = mail.text_part.body.decoded
+    text.encode!("UTF-8", "Windows-1252")
+  #remove excess newlines 
+    text.squeeze!("\n")
+    return text
   end
   
   # Add tags using subject
