@@ -75,6 +75,8 @@ class MessagesController < ApplicationController
   # def index
   #   @message = Message.search(params[:search])
   # end
+  
+  
 
 def index
   @message = Message.all

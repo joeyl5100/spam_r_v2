@@ -3,7 +3,7 @@ module MessagesHelper
         counter = 0.0
         ret = ""
         content.each_char do |c|
-            if(c == '\n')
+            if(c == "\n")
                 counter = counter+1
                 counter.floor
             else
@@ -11,6 +11,7 @@ module MessagesHelper
             end
             ret = ret + c
             if(counter > 14)
+                ret = ret + "..."
                 break
             end
         end
