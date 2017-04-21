@@ -71,19 +71,19 @@ class MessagesController < ApplicationController
     def message_params
       params.require(:message).permit(:author, :subject, :content, :tag_list)
     end
+<<<<<<< HEAD
     
   # def index
   #   @message = Message.search(params[:search])
   # end
   
   
+=======
+>>>>>>> 7cc998c1476298f973119dc68a5a8d4fe9219f0d
 
-def index
-  @message = Message.all
-  if params[:search]
-    @message = Message.search(params[:search]).order("created_at DESC")
-  else
-    @message = Message.all.order('created_at DESC')
+  def index
+    @search = Message.search(params[:q])
+    @products = @search.result
   end
-end
+  
 end

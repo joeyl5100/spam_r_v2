@@ -27,6 +27,7 @@ class UserMailer < ApplicationMailer
           message.created_at = mail.date.to_s
           message.updated_at = Time.now.strftime("%Y-%m-%d %H:%M")
           addTag(message)
+          message.tag_list.sort!
           message.save
           id += 1
         end
@@ -34,8 +35,14 @@ class UserMailer < ApplicationMailer
     end
   end
   
-  # helper method to extract body from email sent by grinnell.edu account
+  # remove csstudent and tags from the subject
+  def trimSubject(message)
+    noCss = message.subject.sub("[csstudents]", "")
+    noTag = noCss.sub(/\{.*\}\s/, "").strip
+  end
+  
   def getContent(mail)
+<<<<<<< HEAD
     # regex expression to parse email body
     nokogiriMail = /\n-->.*--_000/m.match(Nokogiri::HTML(mail.body.decoded).text)[0]
     
@@ -50,6 +57,14 @@ class UserMailer < ApplicationMailer
     trimmedText.gsub!("=\n", "")
     trimmedText.gsub!("&nbsp;", "")
     return trimmedText
+=======
+  #Converts some characters back to what they should be
+    text = mail.text_part.body.decoded
+    text.encode!("UTF-8", "Windows-1252")
+  #remove excess newlines 
+    text.squeeze!("\n")
+    return text
+>>>>>>> 7cc998c1476298f973119dc68a5a8d4fe9219f0d
   end
   
   # Add tags using subject
@@ -58,7 +73,7 @@ class UserMailer < ApplicationMailer
     sub = message.subject.downcase
     tags = /[{].*[}]/.match(sub)
     if !tags.nil?
-      tags = tags[0][1..tags[0].length-2]
+      tags = tags[0][1..-2]
       tagArr = tags.split(',')
       tagArr.each do |tag|
        if tag.include? "cs extra"

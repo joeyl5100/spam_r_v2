@@ -36,4 +36,9 @@
  <%= will_paginate Message.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')%>
 </div>
 
+<<<<<<< HEAD
 <!-- http://jsfiddle.net/GaganGami/Cz3RL/ --> 
+=======
+<%= link_to 'Home', root_path %>
+<%= link_to 'New Message', new_message_path %>
+>>>>>>> 7cc998c1476298f973119dc68a5a8d4fe9219f0d
