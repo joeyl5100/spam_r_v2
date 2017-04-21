@@ -43,6 +43,8 @@ gem 'toastr-rails'
 
 #Read and parse emails
 gem 'mail' #https://github.com/mikel/mail
+
+gem 'will_paginate', '~> 3.1.0'
            #
            
 gem 'mail_room'
