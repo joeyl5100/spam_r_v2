@@ -25,7 +25,7 @@ Rails.application.configure do
   
   
   #Changed
-  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  # config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 

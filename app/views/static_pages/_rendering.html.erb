@@ -4,33 +4,43 @@
   <%= link_to 'Home', root_path %>
 <% else %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Tags</th>
-      <th>Author</th>
-      <th>Subject</th>
-      <th>Content</th>
-      <th>Time Created</th>
-      <th colspan="5"></th>
-    </tr>
-  </thead>
-  
-  <tbody>
-    <% @results.each do |message| %>
-      <tr>
-        <td><%= message.tag_list%></td>
-        <td><%= message.author %></td>
-        <td><%= message.subject %></td>
-        <td><%= message.content %></td>
-        <td><%= message.created_at %></td>
-        <td><%= link_to 'Show', message %></td>
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<h1 style="text-align:center;">Search Results</h1>
+
+<br/>
+
+<% @results.paginate(:page => params[:page], :per_page => 10).order('created_at DESC').each do |message| %> 
+  <mcontainer>
+    <h3 style="text-align:left;float:left;line-height:18px;"><%= message.subject %>  </h3>
+
+    <br style="clear:both;"/>
+
+    <div style="text-align:left;float:left;padding-bottom:8px"> <%= message.author %> </div>
+    <span style="text-align:right;float:right;"><%= message.created_at %></span>
+
+    <hr style="clear:both;"/>
+
+    <scontainer>
+      <%= trimContent(message.content) %>
+    </scontainer>
+
+    <div style="text-align:left;float:left;">
+      <strong>Tags:</strong>
+      <%= message.tag_list %>
+    </div>
+    <span style="text-align:right;float:right;">
+      <%= link_to 'Show', message %>
+    </span>
+  </mcontainer>
+  <br/>
+  <br/>
+<% end %>
+
+<br>
+<div class="apple_pagination">
+ <%= will_paginate @results.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')%>
+</div>
+
 <%= link_to 'Home', root_path %>
+
 
 <% end %>
