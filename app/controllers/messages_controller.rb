@@ -71,15 +71,6 @@ class MessagesController < ApplicationController
     def message_params
       params.require(:message).permit(:author, :subject, :content, :tag_list)
     end
-<<<<<<< HEAD
-    
-  # def index
-  #   @message = Message.search(params[:search])
-  # end
-  
-  
-=======
->>>>>>> 7cc998c1476298f973119dc68a5a8d4fe9219f0d
 
   def index
     @search = Message.search(params[:q])
