@@ -33,7 +33,7 @@
 
 <br>
 <div class="apple_pagination">
- <%= will_paginate Message.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 10).order('created_at DESC')%>
+ <%= will_paginate Message.tagged_with(@selected_tag).paginate(:page => params[:page], :per_page => 10).order('created_at DESC')%>
 </div>
 
 <%= link_to 'Home', root_path %>

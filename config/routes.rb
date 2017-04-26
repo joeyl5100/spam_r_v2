@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   resources :messages do
     member do
       get :tag
@@ -26,6 +28,7 @@ Rails.application.routes.draw do
 authenticated :user do
   resources :messages
 end
+
   
   
   
