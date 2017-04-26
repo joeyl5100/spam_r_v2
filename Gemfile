@@ -41,15 +41,13 @@ gem 'toastr-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-#Read and parse emails
+#Read and parse emails - see UserMailer.rb
 gem 'mail' #https://github.com/mikel/mail
 
 gem 'will_paginate', '~> 3.1.0'
            #
            
-gem 'mail_room'
-gem 'faraday', '>= 0.8.9'
-
+#used for scheduler.rb  
 gem 'rufus-scheduler'
 
 
