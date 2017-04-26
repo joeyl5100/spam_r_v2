@@ -1,10 +1,10 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
-
+  before_filter :index
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
+    #@selected_tag = "t"
   end
 
   # GET /messages/1

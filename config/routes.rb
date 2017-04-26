@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :messages
+  resources :messages do
+    member do
+      get :tag
+    end
+  end
   devise_for :users, controllers: {
       sessions: 'users/sessions',
       passwords: 'users/passwords',
