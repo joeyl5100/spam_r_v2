@@ -6,10 +6,14 @@ class ApplicationController < ActionController::Base
   
   private
 
-   def set_categories
-      @selected_tag = params[:tag]
-   end
- end
+  def set_categories
+      if (params[:tag] == NIL)
+        @results = Message.all
+      else
+        @results = Message.tagged_with(params[:tag])
+      end
+  end
+end
  
   #def after_sign_in_path_for(resource)
   #root_path # unless current_admin_user

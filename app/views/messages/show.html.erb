@@ -1,9 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <mcontainer>
-<!--  <p style="text-align:left;"> <h3><%= @message.subject %>  </h3>
-<span style="float:right;"><%= @message.created_at %></span>
-</p> -->
 
 <h3 style="text-align:left;float:left;"><%= @message.subject %>  </h3>
 
@@ -15,15 +12,21 @@
 <hr style="clear:both;"/>
 
 <ccontainer>
-  <%= @message.content %>
+  <%= @message.content.lstrip %>
 </ccontainer>
 
 <div style="text-align:left;float:left;">
   <strong>Tags:</strong>
-  <%= @message.tag_list %>
+  <% @message.tag_list.each do |tag| %>
+    <tags>
+      <%= link_to tag, messages_url + "?tag=" + tag, { :class=>"tags" }%> 
+    </tags>
+  <% end %>
 </div>
 <span style="text-align:right;float:right;">
-  <%= link_to 'Edit', edit_message_path(@message) %> |
-<%= link_to 'Back', messages_path %>
+<a href="javascript:history.back()">Back</a>
 </span>
 </mcontainer>
+
+
+<%= link_to 'Home', root_path %>

@@ -1,5 +1,5 @@
 <% provide(:name, "Email Archive") %>
-<h1>Email Archive</h1>
+<h1>Grinnell CS Email Archive</h1>
 <% @search = Message.search(params[:q]) %>
 <%= search_form_for @search, url: search_path do |f| %>
 
@@ -16,18 +16,17 @@
   <br/>
   <br/>
 <% end %>
+  
+  </br>
+  <h3>Tags</h3>
 
-<body>
-  <br>
-  Tags
-  <br>
-</body>
-
-<%= button_to "CS Extra", csextra_path, method: :get %>
-<%= button_to "CS Table", cstable_path, method: :get %>
-<%= button_to "Internship", internship_path, method: :get %>
-<%= button_to "Job", job_path, method: :get %>
-<%= button_to "Misc.", misc_path, method: :get %>
+<%= link_to "CS Extra", messages_url << "?tag=csextra", { :class=>"tags-home" } %>
+<%= link_to "CS Table", messages_url + "?tag=csstable", { :class=>"tags-home" } %>
+<%= link_to "Internship", messages_url + "?tag=internship", { :class=>"tags-home" } %>
+<%= link_to "Job", messages_url + "?tag=job", { :class=>"tags-home" } %>
+<%= link_to "Misc.", messages_url + "?tag=misc", { :class=>"tags-home" } %>
+</br>
+  <hr style="border-top: 1px dotted #8c8b8b; margin-top:10px">
 
 <body>
   <br>
