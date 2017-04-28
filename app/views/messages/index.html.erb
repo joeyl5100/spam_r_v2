@@ -33,10 +33,24 @@
     </span>
   </mcontainer>
   <br/>
+<% end %>
+
+<% if 0 == @results.paginate(:page => params[:page], :per_page => 10).length %>
+<mcontainer style={ padding-bottom= 5px}>
+    <h3 style="text-align:left;float:left;line-height:18px;"><%= "OOPS!" %>  </h3>
+
+    <br style="clear:both;"/>
+
+    <hr style="clear:both;"/>
+
+    <ccontainer>
+      <%= "There's no results on this page." %>
+    </ccontainer>
+  </mcontainer>
+  <br/>
   <br/>
 <% end %>
 
-<br>
 <div class="apple_pagination">
  <%= will_paginate @results.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')%>
 </div>
