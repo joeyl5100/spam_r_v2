@@ -72,6 +72,7 @@ class MessagesController < ApplicationController
       params.require(:message).permit(:author, :subject, :content, :tag_list)
     end
 
+  # Used for Ransack gem User field searching
   def index
     @search = Message.search(params[:q])
     @products = @search.result

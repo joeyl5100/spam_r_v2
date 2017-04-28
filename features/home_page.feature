@@ -1,16 +1,14 @@
 Feature: Viewing home page
   
+  # Cannot test button text, only link text
   Scenario: Viewing home page
-    Given I am on Home page
-    When User views webpage content
-    Then User sees 25 most recent emails
-    
-  Scenario: Clicking on link
-    Given I am on Home page
-    When User clicks "View" of "Post 1"
-    Then User is sent to "Post 1" page
-    
-  Scenario: Clicking on new link
-    Given I am on Home page
-    When User clicks "View" of "Title"
-    Then User is sent to "Title" page
+    Given I am logged in as user
+    And I am on Home page
+    Then I should see the text "Email Archive"
+    And I should see the text "Author"
+    And I should see the text "Subject"
+    And I should see the text "Content"
+    And I should see the text "Email archive updates every hour. Emails do not contain attachments."
+    And I should see the text "Go to Home"
+    And I should see the text "Edit registration"
+    And I should see the text "Logout"
