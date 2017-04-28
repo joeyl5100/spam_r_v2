@@ -1,7 +1,7 @@
 <% provide(:name, "Email Archive") %>
-<h1>Email Archive</h1>
+<h1>Grinnell CS Email Archive</h1>
 <% @search = Message.search(params[:q]) %>
-<%= search_form_for @search, url: search_path do |f| %>
+<%= search_form_for @search, url: messages_url do |f| %>
 
   <%= f.label :author %>
   <%= f.search_field :author_cont %>
@@ -12,22 +12,20 @@
   <%= f.label :content %>
   <%= f.search_field :content_cont %>
   <br/>
-  <%= f.submit %>
+  <%= f.submit 'Search', :class => 'search'%>
   <br/>
   <br/>
 <% end %>
+  
+  </br>
+  <h3>Tags</h3>
 
-<body>
-  <br>
-  Tags
-  <br>
-</body>
+<% ActsAsTaggableOn::Tag.all.each do |tag|%>
+  <%= link_to String(tag), messages_url << "?tag=" << String(tag), { :class=>"tags-home" } %>
+<% end %>
 
-<%= button_to "CS Extra", csextra_path, method: :get %>
-<%= button_to "CS Table", cstable_path, method: :get %>
-<%= button_to "Internship", internship_path, method: :get %>
-<%= button_to "Job", job_path, method: :get %>
-<%= button_to "Misc.", misc_path, method: :get %>
+</br>
+  <hr style="border-top: 1px dotted #8c8b8b; margin-top:10px">
 
 <body>
   <br>

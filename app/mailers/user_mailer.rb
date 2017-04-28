@@ -69,6 +69,10 @@ class UserMailer < ApplicationMailer
           message.tag_list.add("Internship")
         elsif tag.include? "job"
           message.tag_list.add("Job")
+        elsif tag.include? "offcampus"
+          message.tag_list.add("Off Campus")
+        elsif tag.include? "candidate"
+          message.tag_list.add("Candidate")
         else
           message.tag_list.add("Misc.")
         end

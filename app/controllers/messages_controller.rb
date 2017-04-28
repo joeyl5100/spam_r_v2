@@ -1,15 +1,14 @@
 class MessagesController < ApplicationController
-  before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_filter :set_message, only: [:show, :edit, :update, :destroy]
 
-  # GET /messages
-  # GET /messages.json
   def index
     @messages = Message.all
   end
-
+  
   # GET /messages/1
   # GET /messages/1.json
   def show
+    #@message = Message.find(params[:id])
   end
 
   # GET /messages/new
@@ -77,5 +76,10 @@ class MessagesController < ApplicationController
     @search = Message.search(params[:q])
     @products = @search.result
   end
+  
+    def index
+      @search = Message.search(params[:q])
+      @products = @search.result
+    end
   
 end
