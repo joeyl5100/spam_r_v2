@@ -1,6 +1,10 @@
 class MessagesController < ApplicationController
   before_filter :set_message, only: [:show, :edit, :update, :destroy]
 
+  def index
+    @messages = Message.all
+  end
+  
   # GET /messages/1
   # GET /messages/1.json
   def show
@@ -68,7 +72,6 @@ class MessagesController < ApplicationController
     end
   
     def index
-      @selected_tag = params[:tag]
       @search = Message.search(params[:q])
       @products = @search.result
     end
