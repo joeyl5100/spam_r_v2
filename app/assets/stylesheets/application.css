@@ -14,3 +14,7 @@
  *= require_self
  *= require toastr
  */
+
+.search {
+    margin-top: 5px;
+}

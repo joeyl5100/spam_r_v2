@@ -12,6 +12,9 @@ class ApplicationController < ActionController::Base
       else
         @results = Message.tagged_with(params[:tag])
       end
+      if (params[:q] != NIL)
+        @results = @results.ransack(params[:q]).result
+      end
   end
 end
  
