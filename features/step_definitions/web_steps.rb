@@ -69,6 +69,57 @@ Given(/^I am logged in as admin$/) do
   sign_in @admin
 end
 
+When(/^I have a populated database$/) do
+  m1 = Message.new
+  m1.author = "example1@grinnell.edu"
+  m1.subject = "Example1"
+  m1.content = "Content1"
+  m1.tag_list.add("Talk")
+  m1.save
+  
+  m2 = Message.create
+  m2.author = "example2@grinnell.edu"
+  m2.subject = "Example2"
+  m2.content = "Content2"
+  m2.tag_list.add("CS Table")
+  m2.save
+  
+  m3 = Message.create
+  m3.author = "example3@grinnell.edu"
+  m3.subject = "Example3"
+  m3.content = "Content3"
+  m3.tag_list.add("Internship")
+  m3.save
+  
+  m4 = Message.new
+  m4.author = "example4@grinnell.edu"
+  m4.subject = "Example4"
+  m4.content = "Content4"
+  m4.tag_list.add("Job")
+  m4.save
+  
+  m5 = Message.create
+  m5.author = "example5@grinnell.edu"
+  m5.subject = "Example5"
+  m5.content = "Content5"
+  m5.tag_list.add("Off Campus")
+  m5.save
+  
+  m6 = Message.create
+  m6.author = "example6@grinnell.edu"
+  m6.subject = "Example6"
+  m6.content = "Content6"
+  m6.tag_list.add("Candidate")
+  m6.save
+  
+  m7 = Message.create
+  m7.author = "example7@grinnell.edu"
+  m7.subject = "Example7"
+  m7.content = "Content7"
+  m7.tag_list.add("Misc.")
+  m7.save
+end
+
 When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
@@ -136,9 +187,11 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
 end
 
 Then(/^I should see the text "([^"]*)"$/) do |arg1|
-  #page.has_content?(arg1)
-  #assert page.has_content?(arg1)
   expect(page).to have_content(arg1)
+end
+
+Then(/^I should not see the text "([^"]*)"$/) do |arg1|
+  expect(page).to have_no_content(arg1)
 end
 
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|

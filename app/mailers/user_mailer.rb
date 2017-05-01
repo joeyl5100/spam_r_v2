@@ -46,6 +46,7 @@ class UserMailer < ApplicationMailer
   #Converts some characters back to what they should be
     text = mail.text_part.body.decoded
     text.encode!("UTF-8", "Windows-1252")
+    text.gsub!("â€™", "\'")
   #remove excess newlines 
     text.squeeze!("\n")
     return text
@@ -61,8 +62,8 @@ class UserMailer < ApplicationMailer
       tags = tags[0][1..-2]
       tagArr = tags.split('][')
       tagArr.each do |tag|
-       if tag.include? "cs extra"
-          message.tag_list.add("CS Extra")
+       if tag.include? "talk"
+          message.tag_list.add("Talk")
         elsif tag.include? "cs table"
           message.tag_list.add("CS Table")
         elsif tag.include? "internship"
