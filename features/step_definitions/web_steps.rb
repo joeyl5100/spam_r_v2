@@ -1,10 +1,5 @@
-#require 'selenium-webdriver'
-#require 'capybara/poltergeist'
-#Capybara.javascript_driver = :poltergeist
 require 'uri'
 require 'cgi'
-#require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
-#require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "selectors"))
 
 module WithinHelpers
   def with_scope(locator)
@@ -16,14 +11,14 @@ World(WithinHelpers)
 @usersession
 
 # Single-line step scoper
-When /^(.*) within (.*[^:])$/ do |step, parent|
-  with_scope(parent) { When step }
-end
+# When /^(.*) within (.*[^:])$/ do |step, parent|
+#   with_scope(parent) { When step }
+# end
 
 # Multi-line step scoper
-When /^(.*) within (.*[^:]):$/ do |step, parent, table_or_string|
-  with_scope(parent) { When "#{step}:", table_or_string }
-end
+# When /^(.*) within (.*[^:]):$/ do |step, parent, table_or_string|
+#   with_scope(parent) { When "#{step}:", table_or_string }
+# end
 
 Given /^(?:|I )am on (.+)$/ do |page_name|
   visit path_to(page_name)
@@ -33,9 +28,9 @@ Given /^I am logged in as admin$/ do
   @usersession = UserSession.create!(User.find_by_email!('admin@example.com'))
 end
 
-Given /^I am logged in as not_admin$/ do
-  @usersession = UserSession.create!(User.find_by_email!('notadmin@example.com'))
-end
+# Given /^I am logged in as not_admin$/ do
+#   @usersession = UserSession.create!(User.find_by_email!('notadmin@example.com'))
+# end
 
 Given "I am not logged in" do
   #UserSession.find.try(:destroy)
@@ -44,14 +39,85 @@ Given "I am not logged in" do
   end
 end
 
-Given /^I am not signed in$/ do
-  current_driver = Capybara.current_driver
-  begin
-    Capybara.current_driver = :rack_test
-    page.driver.submit :delete, "/users/sign_out", {}
-  ensure
-    Capybara.current_driver = current_driver
-  end
+# Given /^I am not signed in$/ do
+#   current_driver = Capybara.current_driver
+#   begin
+#     Capybara.current_driver = :rack_test
+#     page.driver.submit :delete, "/users/sign_out", {}
+#   ensure
+#     Capybara.current_driver = current_driver
+#   end
+# end
+
+Given(/^I am logged in as user$/) do
+  email = 'Uuser@grinnell.edu'
+  password = 'Upassword'
+  
+  @user = User.new(:email => email, :password => password)
+  @user.save!
+  @user.confirm #authenticates user
+  
+  visit '/users/sign_in'
+  fill_in "user_email", :with => email
+  fill_in "user_password", :with => password
+  click_button "Log in"
+end
+
+Given(/^I am logged in as admin$/) do
+  @admin= User.new(:email => 'Auser@grinnell.edu',
+                   :password => 'Apassword').save
+  sign_in @admin
+end
+
+When(/^I have a populated database$/) do
+  m1 = Message.new
+  m1.author = "example1@grinnell.edu"
+  m1.subject = "Example1"
+  m1.content = "Content1"
+  m1.tag_list.add("Talk")
+  m1.save
+  
+  m2 = Message.create
+  m2.author = "example2@grinnell.edu"
+  m2.subject = "Example2"
+  m2.content = "Content2"
+  m2.tag_list.add("CS Table")
+  m2.save
+  
+  m3 = Message.create
+  m3.author = "example3@grinnell.edu"
+  m3.subject = "Example3"
+  m3.content = "Content3"
+  m3.tag_list.add("Internship")
+  m3.save
+  
+  m4 = Message.new
+  m4.author = "example4@grinnell.edu"
+  m4.subject = "Example4"
+  m4.content = "Content4"
+  m4.tag_list.add("Job")
+  m4.save
+  
+  m5 = Message.create
+  m5.author = "example5@grinnell.edu"
+  m5.subject = "Example5"
+  m5.content = "Content5"
+  m5.tag_list.add("Off Campus")
+  m5.save
+  
+  m6 = Message.create
+  m6.author = "example6@grinnell.edu"
+  m6.subject = "Example6"
+  m6.content = "Content6"
+  m6.tag_list.add("Candidate")
+  m6.save
+  
+  m7 = Message.create
+  m7.author = "example7@grinnell.edu"
+  m7.subject = "Example7"
+  m7.content = "Content7"
+  m7.tag_list.add("Misc.")
+  m7.save
 end
 
 When /^(?:|I )go to (.+)$/ do |page_name|
@@ -94,29 +160,38 @@ When /^(?:|I )fill in the following:$/ do |fields|
   end
 end
 
-When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
-  select(value, :from => field)
-end
+# When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
+#   select(value, :from => field)
+# end
 
-When /^(?:|I )check "([^"]*)"$/ do |field|
-  check(field)
-end
-When /^(?:|I )uncheck "([^"]*)"$/ do |field|
-  uncheck(field)
-end
+# When /^(?:|I )check "([^"]*)"$/ do |field|
+#   check(field)
+# end
+# When /^(?:|I )uncheck "([^"]*)"$/ do |field|
+#   uncheck(field)
+# end
 
-When /^(?:|I )choose "([^"]*)"$/ do |field|
-  choose(field)
-end
-When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
-  attach_file(field, File.expand_path(path))
-end
+# When /^(?:|I )choose "([^"]*)"$/ do |field|
+#   choose(field)
+# end
+# When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
+#   attach_file(field, File.expand_path(path))
+# end
+
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
   if page.respond_to? :should
     page.should have_content(text)
   else
     assert page.has_content?(text)
   end
+end
+
+Then(/^I should see the text "([^"]*)"$/) do |arg1|
+  expect(page).to have_content(arg1)
+end
+
+Then(/^I should not see the text "([^"]*)"$/) do |arg1|
+  expect(page).to have_no_content(arg1)
 end
 
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|

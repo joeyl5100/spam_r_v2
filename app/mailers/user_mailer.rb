@@ -40,8 +40,14 @@ class UserMailer < ApplicationMailer
   #Converts some characters back to what they should be
     text = mail.text_part.body.decoded
     text.encode!("UTF-8", "Windows-1252")
+<<<<<<< HEAD
     text.gsub!("â€™", "\'") #fixes apostrophe bug for parsing
     text.squeeze!("\n")  #remove excess newlines
+=======
+    text.gsub!("â€™", "\'")
+  #remove excess newlines 
+    text.squeeze!("\n")
+>>>>>>> 8cd0c0b74eccadbf0c39efec2a208b7adf33c545
     return text
   end
   

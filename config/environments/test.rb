@@ -41,4 +41,20 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  
+  
+  # Added to create users for tests in web_steps.rb
+  config.action_mailer.default_url_options = { host: 'https://mail-project-lederman17.c9users.io' }
+
+  # Allows users to be authenticated in web_steps.rb without setting "confrimation_token" field
+  config.action_mailer.delivery_method = :test  #changed :smtp to :test
+  config.action_mailer.smtp_settings = {
+    user_name:     'csc322emailarchive@gmail.com',
+    password:      'password12345',
+    domain:        'gmail.com',
+    address:       'smtp.gmail.com',
+    port:          '587',
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
 end

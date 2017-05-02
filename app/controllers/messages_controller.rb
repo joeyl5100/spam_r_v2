@@ -1,15 +1,14 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
-  # GET /messages
-  # GET /messages.json
   def index
     @messages = Message.all
   end
-
+  
   # GET /messages/1
   # GET /messages/1.json
   def show
+    #@message = Message.find(params[:id])
   end
 
   # GET /messages/new
@@ -72,9 +71,15 @@ class MessagesController < ApplicationController
       params.require(:message).permit(:author, :subject, :content, :tag_list)
     end
 
+  # Used for Ransack gem User field searching
   def index
     @search = Message.search(params[:q])
     @products = @search.result
   end
+  
+    def index
+      @search = Message.search(params[:q])
+      @products = @search.result
+    end
   
 end
