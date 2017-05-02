@@ -1,3 +1,4 @@
+#This fixes bugs with will_paginate gem for active admin messages page
 if defined?(WillPaginate)
   module WillPaginate
     module ActiveRecord
