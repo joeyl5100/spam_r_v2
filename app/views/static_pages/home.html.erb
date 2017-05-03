@@ -18,37 +18,46 @@
 <% end %>
   
   </br>
-  <h3>Tags</h3>
+
+<h3> Search by tag</h3>
 
 <% ActsAsTaggableOn::Tag.all.each do |tag|%>
   <%= link_to String(tag), messages_url << "?tag=" << String(tag), { :class=>"tags-home" } %>
 <% end %>
 
 </br>
-  <hr style="border-top: 1px dotted #8c8b8b; margin-top:10px">
+----------------------------------------------------
+</br>
+</br>
 
-<body>
-  <br>
-  Email archive updates every hour. Emails do not contain attachments.
-  <br>
-  <br>
-</body>
+<%= link_to 'Newest Messages', messages_url, { :class=>"newest" } %>
 
-<% if current_user.nil? %>
-	<%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
-<% else %>
-	<%= link_to root_path, class: 'login-button' do %>Go to Home<% end %>
-<% end %>
+<hr style="border-top: 1px dotted #8c8b8b; margin-top:10px">
 
-
-<% if user_signed_in? %>
-   Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to('Edit registration', edit_user_registration_path) %>
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
- 
-<% else %>
- 
-  <%= link_to('Register', new_user_registration_path)  %>
-  <%= link_to('Login', new_user_session_path)  %>  
- 
-<% end %>
+<div style="text-align: right;">
+  <body>
+    <br>
+    Email archive updates every hour. Emails do not contain attachments.
+    <br>
+    <br>
+  </body>
+  
+  <% if current_user.nil? %>
+  	<%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
+  <% else %>
+  	<%= link_to root_path, class: 'login-button' do %>Go to Home<% end %>
+  <% end %>
+  
+  
+  <% if user_signed_in? %>
+     Logged in as <strong><%= current_user.email %></strong>.
+    <%= link_to('Edit registration', edit_user_registration_path) %>
+    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+   
+  <% else %>
+   
+    <%= link_to('Register', new_user_registration_path)  %>
+    <%= link_to('Login', new_user_session_path)  %>  
+   
+  <% end %>
+</div>
