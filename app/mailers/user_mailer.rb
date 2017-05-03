@@ -75,7 +75,8 @@ class UserMailer < ApplicationMailer
     else
       message.tag_list.add("Misc.") #if no tags are attached
     end
-    subject = subject.sub!(/[\[].*[\]]/, "").strip #removes tags from subject
+    subject.sub!(/[\[].*[\]]/, "") #removes tags from subject
+    subject.strip! #removes whitespaces
     return subject.squeeze(" ") #removes extra whitespace from subject
   end
   
