@@ -12,13 +12,15 @@
   <%= f.label :content %>
   <%= f.search_field :content_cont %>
   <br/>
-  <%= f.label :date %>
-  <%= f.search_field :created_at_cont %>
+  <%= f.label :date, "Date range (YYYY-MM-DD)" %>
+  <%= f.search_field :created_at_gteq %>
+  <%= f.search_field :created_at_lteq %>
   <br/>
   <%= f.submit 'Search', :class => 'search'%>
   <br/>
   <br/>
 <% end %>
+  
   
   </br>
   <h3>Tags</h3>
