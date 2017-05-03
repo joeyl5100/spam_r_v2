@@ -55,8 +55,10 @@ group :development, :test do
   gem 'byebug', '~> 9.0.0', platform: :mri
   gem 'sqlite3', '~> 1.3.12'
 end
+
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
