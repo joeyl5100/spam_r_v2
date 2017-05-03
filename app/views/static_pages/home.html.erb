@@ -6,15 +6,20 @@
   <%= f.label :author %>
   <%= f.search_field :author_cont %>
   <br/>
+  <br/>
   <%= f.label :subject %>
   <%= f.search_field :subject_cont %>
+  <br/>
   <br/>
   <%= f.label :content %>
   <%= f.search_field :content_cont %>
   <br/>
-  <%= f.label :date, "Date range (YYYY-MM-DD)" %>
+  <br/>
+  <%= f.label :date %>
   <%= f.search_field :created_at_gteq %>
+  <%= " to " %>
   <%= f.search_field :created_at_lteq %>
+  <%= " (YYYY-MM-DD)" %>
   <br/>
   <%= f.submit 'Search', :class => 'search'%>
   <br/>
