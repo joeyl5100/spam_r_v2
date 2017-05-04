@@ -29,6 +29,7 @@ gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'devise'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.11'
+gem 'pg', '0.18.4'
 
 #tagging gem
 gem 'acts-as-taggable-on'
