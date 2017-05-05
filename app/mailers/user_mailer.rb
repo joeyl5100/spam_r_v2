@@ -13,7 +13,13 @@ class UserMailer < ApplicationMailer
 
   # method to grab mail info from each file
   def getMail
-    id = Message.maximum(:id).next
+#    id = Message.maximum(:id).next
+    id = Message.maximum(:id)
+    if id.nil?
+      id = 0
+    else
+      id += 1
+    end
     allMail = Mail.all #Grab all unread mail
     if !allMail.empty? #Check to see if no new mail
       allMail.each do |mail|
