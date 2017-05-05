@@ -118,6 +118,62 @@ When(/^I have a populated database$/) do
   m7.content = "Content7"
   m7.tag_list.add("Misc.")
   m7.save
+  
+  m8 = Message.create
+  m8.author = "example8@grinnell.edu"
+  m8.subject = "Example8"
+  m8.content = "Content8"
+  m8.tag_list.add("Misc.")
+  m8.save
+  
+  m9 = Message.create
+  m9.author = "example8@grinnell.edu"
+  m9.subject = "Example8"
+  m9.content = "Content8"
+  m9.tag_list.add("Misc.")
+  m9.save
+  
+  m10 = Message.create
+  m10.author = "example8@grinnell.edu"
+  m10.subject = "Example8"
+  m10.content = "Content8"
+  m10.tag_list.add("Misc.")
+  m10.save
+  
+  m11 = Message.new
+  m11.author = "example11@grinnell.edu"
+  m11.subject = "Example11"
+  m11.content = "Content11"
+  m11.tag_list.add("Talk")
+  m11.save
+  
+  m12 = Message.create
+  m12.author = "example12@grinnell.edu"
+  m12.subject = "Example12"
+  m12.content = "Content12"
+  m12.tag_list.add("CS Table")
+  m12.save
+  
+  m13 = Message.create
+  m13.author = "example13@grinnell.edu"
+  m13.subject = "Example13"
+  m13.content = "Content13"
+  m13.tag_list.add("Internship")
+  m13.save
+  
+  m14 = Message.new
+  m14.author = "example14@grinnell.edu"
+  m14.subject = "Example14"
+  m14.content = "Content14"
+  m14.tag_list.add("Job")
+  m14.save
+  
+  m15 = Message.create
+  m15.author = "example15@grinnell.edu"
+  m15.subject = "Example15"
+  m15.content = "Content15"
+  m15.tag_list.add("Off Campus")
+  m15.save
 end
 
 When /^(?:|I )go to (.+)$/ do |page_name|
@@ -202,6 +258,12 @@ Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
   else
     assert page.has_xpath?('//*', :text => regexp)
   end
+end
+
+Then /^(?:|I )should see \/([^\/]*)\/ (\d+)(?:x|X| times?)?$/ do |regexp, count|
+  regexp = Regexp.new(regexp)
+  count = count.to_i
+  page.find(:xpath, '//body').text.split(regexp).length.should == count+1
 end
 
 Then /^(?:|I )should not see "([^"]*)"$/ do |text|
@@ -290,6 +352,7 @@ Then /^the "([^"]*)" checkbox(?: within (.*))? should be checked$/ do |label, pa
     end
   end
 end
+
 
 Then /^the "([^"]*)" checkbox(?: within (.*))? should not be checked$/ do |label, parent|
   with_scope(parent) do

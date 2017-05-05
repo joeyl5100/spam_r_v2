@@ -37,9 +37,12 @@
     <%= f.submit "Update" %>
   </div>
 <% end %>
-<!--Allows user to cancel their account-->
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<!--Allows user to cancel their account-->
+<h2>Cancel my account</h2>
+
+<div><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></div>
+
+<hr style="border-top: 1px dotted #8c8b8b; margin-top:10px">
 
 <%= link_to "Back", :back %>

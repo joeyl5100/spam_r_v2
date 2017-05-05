@@ -29,52 +29,47 @@
   
   
   </br>
-  <h3>Tags</h3>
 
-<<<<<<< HEAD
-<body>
-  <br>
-  Tags
-  <br>
-</body>
-<!--we can search by tags when we click bottons, which -->
-<!--are "CS Extra", "CS Table", "Internship", "Job", "Misc."-->
-<%= button_to "CS Extra", csextra_path, method: :get %>
-<%= button_to "CS Table", cstable_path, method: :get %>
-<%= button_to "Internship", internship_path, method: :get %>
-<%= button_to "Job", job_path, method: :get %>
-<%= button_to "Misc.", misc_path, method: :get %>
-=======
+<h3> Search by tag</h3>
+
+
 <% ActsAsTaggableOn::Tag.all.each do |tag|%>
   <%= link_to String(tag), messages_url << "?tag=" << String(tag), { :class=>"tags-home" } %>
 <% end %>
 
 </br>
-  <hr style="border-top: 1px dotted #8c8b8b; margin-top:10px">
->>>>>>> db6a321d1357e71851d41caaa08bf8b2213a3fbf
+----------------------------------------------------
+</br>
+</br>
 
-<body>
-  <br>
-  Email archive updates every hour. Emails do not contain attachments.
-  <br>
-  <br>
-</body>
-<!--Checking if the user is nil-->
-<% if current_user.nil? %>
-	<%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
-<% else %>
-	<%= link_to root_path, class: 'login-button' do %>Go to Home<% end %>
-<% end %>
+<%= link_to 'Newest Messages', messages_url, { :class=>"newest" } %>
 
-<!--Checking if the user is signed in-->
-<% if user_signed_in? %>
-   Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to('Edit registration', edit_user_registration_path) %>
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
- 
-<% else %>
- 
-  <%= link_to('Register', new_user_registration_path)  %>
-  <%= link_to('Login', new_user_session_path)  %>  
- 
-<% end %>
+<hr style="border-top: 1px dotted #8c8b8b; margin-top:10px">
+
+<div style="text-align: right;">
+  <body>
+    <br>
+    Email archive updates every hour. Emails do not contain attachments.
+    <br>
+    <br>
+  </body>
+  
+  <% if current_user.nil? %>
+  	<%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
+  <% else %>
+  	<%= link_to root_path, class: 'login-button' do %>Go to Home<% end %>
+  <% end %>
+  
+  
+  <% if user_signed_in? %>
+     Logged in as <strong><%= current_user.email %></strong>.
+    <%= link_to('Edit registration', edit_user_registration_path) %>
+    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+   
+  <% else %>
+   
+    <%= link_to('Register', new_user_registration_path)  %>
+    <%= link_to('Login', new_user_session_path)  %>  
+   
+  <% end %>
+</div>
