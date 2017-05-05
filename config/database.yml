@@ -3,9 +3,10 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: <%= ENV['csc322emailarchive'] %>
-  password: <%= ENV['password12345'] %>
+  username: csc322emailarchive
+  password: password12345
   timeout: 5000
+  host: localhost
 
 development:
   <<: *default
