@@ -3,7 +3,7 @@
 <h1 style="text-align:center;">E-Mails</h1>
 
 <br/>
-
+<!--setting up the format for message pages-->
 <% Message.paginate(:page => params[:page], :per_page => 10).order('created_at DESC').each do |message| %> 
   <mcontainer>
     <h3 style="text-align:left;float:left;line-height:18px;"><%= message.subject %>  </h3>

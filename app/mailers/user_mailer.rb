@@ -2,7 +2,7 @@ class UserMailer < ApplicationMailer
   
   require 'mail'
 
-  #Connect to gmail account
+# This is for connecting to gmail account
   Mail.defaults do
     retriever_method :pop3, :address    => "pop.gmail.com",
                             :port       => 995,
@@ -11,17 +11,19 @@ class UserMailer < ApplicationMailer
                             :enable_ssl => true
   end
 
-  # method to grab mail info from each file
+#This is a method to grab mail info from each file
   def getMail
     id = Message.count
-    allMail = Mail.all #Grab all unread mail
-    if !allMail.empty? #Check to see if no new mail
+#This is for grabing all unread mails    
+    allMail = Mail.all 
+#This is for checking to see if no new mail    
+    if !allMail.empty? 
       allMail.each do |mail|
-        #check to see if author is from grinnell domain
+#This is a method to check to see if author is from grinnell domain
         if mail.from[0].include? ("@grinnell.edu")
           message = Message.new
           message.id = id
-          #Grab subject that doesn't include csstudent and other tags
+# This is a method to grab subject that doesn't include csstudent and other tags
           message.subject = addTag(message, mail.subject).squeeze(" ")
           message.tag_list.sort!
           message.author = mail.from[0]
@@ -36,23 +38,23 @@ class UserMailer < ApplicationMailer
     end
   end
   
-  # remove csstudent and tags from the subject
+#This is for removing csstudent and tags from the subject
   def trimSubject(subject)
     noTag = subject.sub(/[\[].*[\]]/, "").strip
     return noTag
   end
-  
+# This is for getting content for a mail  
   def getContent(mail)
-  #Converts some characters back to what they should be
+#Converts some characters back to what they should be
     text = mail.text_part.body.decoded
     text.encode!("UTF-8", "Windows-1252")
-  #remove excess newlines 
+#remove excess newlines 
     text.squeeze!("\n")
     return text
   end
   
-  # Add tags using subject
-  # Grabs tags between brackets and trims the subject
+# Add tags using subject
+# This is for grabing tags between brackets and trims the subject
   def addTag(message, mail)
     subject = mail.sub("[csstudents]", "")
     subjectLow = subject.downcase
@@ -71,7 +73,7 @@ class UserMailer < ApplicationMailer
           message.tag_list.add("Job")
         else
           message.tag_list.add("Misc.")
-        end
+       end
       end
     else
       message.tag_list.add("Misc.")
@@ -79,10 +81,12 @@ class UserMailer < ApplicationMailer
     return subject.sub(/[\[].*[\]]/, "").strip
   end
 
+
+#This is for saving attachements. Attachments is an AttachmentsList object 
+#containing a number of Part objects
 def saveAttachments(mail)
   mail.attachments.each do | attachment |
-    # Attachments is an AttachmentsList object containing a
-    # number of Part objects
+
     filename = attachment.filename
     begin
       File.open(filename, "w+b", 0644) {|f| f.write attachment.body.decoded}

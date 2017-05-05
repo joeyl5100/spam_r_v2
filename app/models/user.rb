@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :confirmable
          
   validate :email_domain
-
+# Only allows Grinnell email 
   def email_domain
     domain = email.split("@").last.downcase
     if !email.blank?

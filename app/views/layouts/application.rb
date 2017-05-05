@@ -1,3 +1,5 @@
+# setting layout for pages and loading pages
+# I don't think we need this file though...
 <!DOCTYPE html>
 <html>
   <head>

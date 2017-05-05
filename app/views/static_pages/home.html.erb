@@ -1,3 +1,4 @@
+<!--setting up the format for home page-->
 <% provide(:name, "Email Archive") %>
 <h1>Email Archive</h1>
 <% @search = Message.search(params[:q]) %>
@@ -22,7 +23,8 @@
   Tags
   <br>
 </body>
-
+<!--we can search by tags when we click bottons, which -->
+<!--are "CS Extra", "CS Table", "Internship", "Job", "Misc."-->
 <%= button_to "CS Extra", csextra_path, method: :get %>
 <%= button_to "CS Table", cstable_path, method: :get %>
 <%= button_to "Internship", internship_path, method: :get %>
@@ -35,14 +37,14 @@
   <br>
   <br>
 </body>
-
+<!--Checking if the user is nil-->
 <% if current_user.nil? %>
 	<%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
 <% else %>
 	<%= link_to root_path, class: 'login-button' do %>Go to Home<% end %>
 <% end %>
 
-
+<!--Checking if the user is signed in-->
 <% if user_signed_in? %>
    Logged in as <strong><%= current_user.email %></strong>.
   <%= link_to('Edit registration', edit_user_registration_path) %>

@@ -1,2 +1,3 @@
+<!--Using ransack to search and rending the result-->
 <% @results = Message.ransack(params[:q]).result %>
 <%=render 'static_pages/rendering' %>

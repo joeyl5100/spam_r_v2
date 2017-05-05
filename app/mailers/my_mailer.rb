@@ -1,8 +1,11 @@
 class MyMailer < Devise::Mailer   
-  helper :application # gives access to all helpers defined within `application_helper`.
-  include Devise::Controllers::UrlHelpers # Optional. eg. `confirmation_url`
-  default template_path: 'devise/mailer' # to make sure that your mailer uses the devise views
-
+# This gives access to all helpers defined within `application_helper`.
+  helper :application 
+# Optional. eg. `confirmation_url`
+  include Devise::Controllers::UrlHelpers 
+# This is to make sure that your mailer uses the devise views
+  default template_path: 'devise/mailer' 
+# This is for sending a confirmation message to a new user
 def confirmation_instructions(record, token, opts={})
   headers["Custom_header"] = "Email Archive Email Confirmation"
   opts[:from] = 'csc322emailarchive@gmail.com' 
