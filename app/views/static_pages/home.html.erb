@@ -3,18 +3,23 @@
 <% @search = Message.search(params[:q]) %>
 <%= search_form_for @search, url: messages_url do |f| %>
 
-  <%= f.label :author %>
+  <%= f.label :author_cont, "Author" %>
   <%= f.search_field :author_cont %>
   <br/>
-  <%= f.label :subject %>
+  <br/>
+  <%= f.label :subject_cont, "Subject" %>
   <%= f.search_field :subject_cont %>
   <br/>
-  <%= f.label :content %>
+  <br/>
+  <%= f.label :content_cont, "Content" %>
   <%= f.search_field :content_cont %>
   <br/>
-  <%= f.label :date, "Date range (YYYY-MM-DD)" %>
+  <br/>
+  <%= f.label :created_at, "Date" %>
   <%= f.search_field :created_at_gteq %>
+  <%= " to " %>
   <%= f.search_field :created_at_lteq %>
+  <%= " (YYYY-MM-DD)" %>
   <br/>
   <%= f.submit 'Search', :class => 'search'%>
   <br/>

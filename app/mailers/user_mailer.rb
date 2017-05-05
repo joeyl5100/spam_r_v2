@@ -13,7 +13,13 @@ class UserMailer < ApplicationMailer
 
   # method to grab mail info from each file
   def getMail
-    id = Message.maximum(:id).next
+    #gets maximum id; if no messages exist, next line returns nil
+    id = Message.maximum(:id)
+    if id.nil?
+      id = 0;
+    else
+      id += 1
+    end
     allMail = Mail.all #Grab all unread mail
     if !allMail.empty? #Check to see if no new mail
       allMail.each do |mail|
@@ -40,14 +46,9 @@ class UserMailer < ApplicationMailer
   #Converts some characters back to what they should be
     text = mail.text_part.body.decoded
     text.encode!("UTF-8", "Windows-1252")
-<<<<<<< HEAD
     text.gsub!("â€™", "\'") #fixes apostrophe bug for parsing
-    text.squeeze!("\n")  #remove excess newlines
-=======
-    text.gsub!("â€™", "\'")
-  #remove excess newlines 
-    text.squeeze!("\n")
->>>>>>> 8cd0c0b74eccadbf0c39efec2a208b7adf33c545
+    #text.squeeze!("\n")  #remove excess newlines
+    text.gsub!(/(\n){3,}/, "\n\n")
     return text
   end
   
@@ -81,7 +82,8 @@ class UserMailer < ApplicationMailer
     else
       message.tag_list.add("Misc.") #if no tags are attached
     end
-    subject = subject.sub!(/[\[].*[\]]/, "").strip #removes tags from subject
+    subject.sub!(/[\[].*[\]]/, "") #removes tags from subject
+    subject.strip! #removes whitespaces
     return subject.squeeze(" ") #removes extra whitespace from subject
   end
   
