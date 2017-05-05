@@ -1,9 +1,9 @@
-require 'rufus-scheduler'
+# require 'rufus-scheduler'
 
-scheduler = Rufus::Scheduler.new
+# scheduler = Rufus::Scheduler.new
 
-#Grab mail from gmail every hour
-scheduler.every '1h' do
-  mailer = UserMailer.new
-  mailer.getMail     
-end
+# #Grab mail from gmail every hour
+# scheduler.every '1h' do
+#   mailer = UserMailer.new
+#   mailer.getMail     
+# end
