@@ -1,17 +1,21 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
+<<<<<<< HEAD
   # GET /messages
   # GET /messages.json
 # define messages for message
+=======
+>>>>>>> db6a321d1357e71851d41caaa08bf8b2213a3fbf
   def index
     @messages = Message.all
   end
-
+  
   # GET /messages/1
   # GET /messages/1.json
 # This is for showing messages
   def show
+    #@message = Message.find(params[:id])
   end
 
   # GET /messages/new
@@ -84,9 +88,16 @@ class MessagesController < ApplicationController
     end
 
 # define search and products for searching
+  # Used for Ransack gem User field searching
+
   def index
     @search = Message.search(params[:q])
     @products = @search.result
   end
+  
+    def index
+      @search = Message.search(params[:q])
+      @products = @search.result
+    end
   
 end

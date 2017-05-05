@@ -14,14 +14,15 @@ ActiveAdmin.register_page "Dashboard" do
     #
     # columns do
     #   column do
-    #     panel "Recent Posts" do
+    #     panel "Recent Message" do
     #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
+    #         Message.all.map do |message|
+    #           li link_to(message.subject, admin_post_path(message))
     #         end
     #       end
     #     end
     #   end
+    # end
 
     #   column do
     #     panel "Info" do

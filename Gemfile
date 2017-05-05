@@ -49,17 +49,14 @@ gem 'acts-as-taggable-on'
 # customized and extended.
 gem 'toastr-rails'
 
-# the gems we used for reading and parsing emails
+# the gems we used for reading and parsing emailsz
 gem 'mail' #https://github.com/mikel/mail
 gem 'will_paginate', '~> 3.1.0'
            #
            
-gem 'mail_room'
-gem 'faraday', '>= 0.8.9'
 
 # Job scheduler for Ruby (at, cron, in and every jobs).
 gem 'rufus-scheduler'
-
 
 group :development, :test do
 # Call 'byebug' anywhere in the code to stop execution and get 
@@ -109,6 +106,7 @@ group :test do
   gem 'database_cleaner' # to clear Cucumber's test database between runs
   gem 'capybara'         # lets Cucumber pretend to be a web browser
   gem 'launchy'          # a useful debugging aid for user stories
+  gem 'rspec'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

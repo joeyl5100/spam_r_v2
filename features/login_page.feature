@@ -26,7 +26,7 @@ Given following users exist:
 
   Scenario: Logging in without an existing account
     Given I am on Login page
-    When I follow "Sign up"
+    When I press "Log in"
     Then I go to Register page
     
   Scenario: Logging in with incorrect username information

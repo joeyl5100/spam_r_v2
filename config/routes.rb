@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  # resource route
-  resources :messages
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  resources :messages do
+    member do
+      get :tag
+    end
+  end
   devise_for :users, controllers: {
       sessions: 'users/sessions',
       passwords: 'users/passwords',
@@ -14,17 +20,13 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get 'static_pages/home'
   get 'static_pages/search', to: 'static_pages#search', as: 'search'
-  get 'static_pages/cstable', to: 'static_pages#cstable', as: 'cstable'
-  get 'static_pages/csextra', to: 'static_pages#csextra', as: 'csextra'
-  get 'static_pages/job', to: 'static_pages#job', as: 'job'
-  get 'static_pages/internship', to: 'static_pages#internship', as: 'internship'
-  get 'static_pages/misc', to: 'static_pages#misc', as: 'misc'  
   
 # post 'inbox', :to => 'static_pages#inbox', :as => :static_pages_inbox
   
 authenticated :user do
   resources :messages
 end
+
   
   
   
