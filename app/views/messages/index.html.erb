@@ -48,7 +48,7 @@
     <hr style="clear:both;"/>
 
     <ccontainer>
-      <%= "There's no results on this page." %>
+      <%= "There are no results on this page." %>
     </ccontainer>
   </mcontainer>
   <br/>
@@ -58,8 +58,8 @@
 <div class="apple_pagination">
  <%= will_paginate @results.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')%>
 </div>
-<hr style="border-top: 1px dotted #8c8b8b; margin-top:10px">
 
+<hr style="border-top: 1px dotted #8c8b8b; margin-top:10px">
 
 <div style="text-align:right;">
 <body>
