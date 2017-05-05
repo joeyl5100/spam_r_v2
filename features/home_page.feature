@@ -86,11 +86,32 @@ Feature: Viewing home page
     And I should see the text "Content7"
     And I should not see the text "Content1"
     
-  Scenario: Searching database via search bar
+  Scenario: Searching database via Author search bar
     Given I have a populated database
     And I am logged in as user
     And I am on Home page
     When I fill in "Author" with "example1"
-    Then I go to Example1 Search page
+    And I press "Search"
+    Then I go to Example One Search page
     And I should see the text "Content1"
     And I should not see the text "Content2"
+    
+  Scenario: Searching database via Subject search bar
+    Given I have a populated database
+    And I am logged in as user
+    And I am on Home page
+    When I fill in "Subject" with "Example2"
+    And I press "Search"
+    Then I go to Example Two Search page
+    And I should see the text "Content2"
+    And I should not see the text "Content3"
+    
+  Scenario: Searching database via Content search bar
+    Given I have a populated database
+    And I am logged in as user
+    And I am on Home page
+    When I fill in "Content" with "Content3"
+    And I press "Search"
+    Then I go to Example Three Search page
+    And I should see the text "Content3"
+    And I should not see the text "Content4"
