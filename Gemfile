@@ -70,11 +70,9 @@ group :development, :test do
   gem 'sqlite3', '~> 1.3.12'
 end
 
-<<<<<<< HEAD
-=======
+
 # Remotipart is a Ruby on Rails gem enabling AJAX file uploads with 
 # jQuery in Rails 3 and Rails 4 remote forms. 
->>>>>>> 1540e2202ac156d3f59f69f8708705bc02c1d1a8
 gem 'remotipart', github: 'mshibuya/remotipart'
 
 #this gem provides an easy-to-use interface for managing your data.

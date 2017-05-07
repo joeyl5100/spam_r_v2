@@ -7,7 +7,7 @@ default: &default
   password: password12345
   timeout: 5000
   host: localhost
-
+  
 development:
   <<: *default
   database: my_database_development

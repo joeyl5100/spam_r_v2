@@ -1,12 +1,10 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
-<<<<<<< HEAD
+
   # GET /messages
   # GET /messages.json
 # define messages for message
-=======
->>>>>>> db6a321d1357e71851d41caaa08bf8b2213a3fbf
   def index
     @messages = Message.all
   end
