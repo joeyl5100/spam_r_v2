@@ -1,3 +1,4 @@
+<!--user can log in with a vaild email address and right password-->
 <h2>User Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -10,7 +11,7 @@
     <%= f.label :password %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
-
+<!--users can save the email address and password-->
   <% if devise_mapping.rememberable? -%>
     <div class="field">
       <%= f.check_box :remember_me %>

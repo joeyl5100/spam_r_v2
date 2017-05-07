@@ -8,9 +8,10 @@ module NavigationHelpers
             new_user_session_path
         when /Register/
             new_user_registration_path
+        when /Messages/
+            messages_url
         when /Resend Confirmation/
-            #root_path + /users/confirmation/new
-            #new_user_confirmation #may need to change
+
         when /Talk Search/
             messages_url << "?tag=Talk"
         when /CS Table Search/
@@ -25,8 +26,27 @@ module NavigationHelpers
             messages_url << "?tag=Candidate"
         when /Misc Search/
             messages_url << "?tag=Misc."
+<<<<<<< HEAD
+        when /Show/
+            messages_url << "/1"
+        when /Second/
+            messages_url << "?page=2"
+        when /First/
+            messages_url << "?page=1"
+        when /Most Recent Message/
+            messages_url << "/15"
+        when /Faulty Tag/
+            messages_url << "?tag=aoesunth.nstphsnt.,hpnstabeusneotasntuhsnaeou"
          when /Example1 Search/   
             messages_url << "?utf8=✓&q%5Bauthor_cont%5D=example1&q%5Bsubject_cont%5D=&q%5Bcontent_cont%5D=&commit=Search"
+=======
+        when /Example One Search/   
+            messages_url << "?q%5Bauthor_cont%5D=example1&q%5Bsubject_cont%5D=&q%5Bcontent_cont%5D=&q%5Bcreated_at_gteq%5D=&q%5Bcreated_at_lteq%5D=&commit=Search"
+        when /Example Two Search/   
+            messages_url << "?q%5Bauthor_cont%5D=&q%5Bsubject_cont%5D=Example2&q%5Bcontent_cont%5D=&q%5Bcreated_at_gteq%5D=&q%5Bcreated_at_lteq%5D=&commit=Search"
+        when /Example Three Search/
+            messages_url << "?q%5Bauthor_cont%5D=&q%5Bsubject_cont%5D=&q%5Bcontent_cont%5D=Content3&q%5Bcreated_at_gteq%5D=&q%5Bcreated_at_lteq%5D=&commit=Search"
+>>>>>>> db6a321d1357e71851d41caaa08bf8b2213a3fbf
         else
             raise "Can't find mapping from \"#{page_name}\" to a path.\n"
         end

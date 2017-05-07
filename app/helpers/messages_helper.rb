@@ -1,3 +1,4 @@
+# This is a helper funtion for triming content
 module MessagesHelper
     def trimContent(content)
         counter = 0.0

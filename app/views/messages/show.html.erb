@@ -1,9 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+<h1 style="text-align:center;"><%= @message.subject %></h1>
+
+<div style = "text-align:center;">
+  <%= link_to 'Home', root_path %>
+</div>
+
+<br/>
+
 <mcontainer>
-
-<h3 style="text-align:left;float:left;"><%= @message.subject %>  </h3>
-
 <br style="clear:both;"/>
 
 <strong style="text-align:left;float:left;padding-bottom:8px"> <%= @message.author %> </strong>
@@ -28,5 +33,33 @@
 </span>
 </mcontainer>
 
+<hr style="border-top: 1px dotted #8c8b8b; margin-top:10px">
 
-<%= link_to 'Home', root_path %>
+<div style="text-align:right;">
+<body>
+  <br>
+  Email archive updates every hour. Emails do not contain attachments.
+  <br>
+  <br>
+</body>
+
+<% if current_user.nil? %>
+	<%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
+<% else %>
+	<%= link_to root_path, class: 'login-button' do %>Go to Home<% end %>
+<% end %>
+
+
+<% if user_signed_in? %>
+   Logged in as <strong><%= current_user.email %></strong>.
+  <%= link_to('Edit registration', edit_user_registration_path) %>
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+ 
+<% else %>
+ 
+  <%= link_to('Register', new_user_registration_path)  %>
+  <%= link_to('Login', new_user_session_path)  %>  
+ 
+<% end %>
+
+</div>

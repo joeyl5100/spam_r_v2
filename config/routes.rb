@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :messages do
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
       confirmations: 'confirmations' 
   }
   
+  # named route that can be invoked with purchase_url(id: product.id), which
+  # are search, cstable, csextra, job, internship and misc
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'static_pages#home'
   get 'static_pages/home'

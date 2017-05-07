@@ -2,7 +2,7 @@ class UserMailer < ApplicationMailer
   
   require 'mail'
 
-  #Connect to gmail account
+# This is for connecting to gmail account
   Mail.defaults do
     retriever_method :pop3, :address    => "pop.gmail.com",
                             :port       => 995,
@@ -11,9 +11,9 @@ class UserMailer < ApplicationMailer
                             :enable_ssl => true
   end
 
-  # method to grab mail info from each file
+#This is a method to grab mail info from each file
   def getMail
-#   gets maximum id making avoiding nil case
+#   gets maximum id avoiding nil case
     id = Message.maximum(:id)
     if id.nil?
       id = 0
@@ -23,7 +23,7 @@ class UserMailer < ApplicationMailer
     allMail = Mail.all #Grab all unread mail
     if !allMail.empty? #Check to see if no new mail
       allMail.each do |mail|
-        #check to see if author is from grinnell domain
+#This is a method to check to see if author is from grinnell domain
         if mail.from[0].include? ("@grinnell.edu")
           message = Message.new
           message.id = id
@@ -42,8 +42,10 @@ class UserMailer < ApplicationMailer
     end
   end
   
+
+# This is for getting content for a mail  
   def getContent(mail)
-  #Converts some characters back to what they should be
+#Converts some characters back to what they should be
     text = mail.text_part.body.decoded
     text.encode!("UTF-8", "Windows-1252")
     text.gsub!("â€™", "\'") #fixes apostrophe bug for parsing
@@ -76,7 +78,7 @@ class UserMailer < ApplicationMailer
           message.tag_list.add("Candidate")
         else
           message.tag_list.add("Misc.")
-        end
+       end
       end
     else
       message.tag_list.add("Misc.") #if no tags are attached
@@ -85,5 +87,4 @@ class UserMailer < ApplicationMailer
     subject.strip! #removes whitespaces
     return subject.squeeze(" ") #removes extra whitespace from subject
   end
-  
 end

@@ -1,11 +1,6 @@
-<!--setting up the format for searching result-->
-<% if @results.length <= 0 %>
+<p id="notice"><%= notice %></p>
 
-  <div class="two">No results. Try searching for something else.</div>
-  <%= link_to 'Home', root_path %>
-<% else %>
-
-<h1 style="text-align:center;">Search Results</h1>
+<h1 style="text-align:center;">E-Mails</h1>
 
 <br/>
 
@@ -20,28 +15,44 @@
 
     <hr style="clear:both;"/>
 
-    <scontainer>
-      <%= trimContent(message.content) %>
-    </scontainer>
+    <ccontainer>
+      <%= trimContent(message.content).lstrip %>
+    </ccontainer>
 
     <div style="text-align:left;float:left;">
       <strong>Tags:</strong>
-      <%= message.tag_list %>
+        <% message.tag_list.each do |tag| %>
+          <tags>
+            <%= link_to tag, messages_url + "?tag=" + tag, { :class=>"tags" }%> 
+          </tags>
+        <% end %>
     </div>
+    
     <span style="text-align:right;float:right;">
       <%= link_to 'Show', message %>
     </span>
   </mcontainer>
   <br/>
+<% end %>
+
+<% if 0 == @results.paginate(:page => params[:page], :per_page => 10).length %>
+<mcontainer style={ padding-bottom= 5px}>
+    <h3 style="text-align:left;float:left;line-height:18px;"><%= "OOPS!" %>  </h3>
+
+    <br style="clear:both;"/>
+
+    <hr style="clear:both;"/>
+
+    <ccontainer>
+      <%= "There's no results on this page." %>
+    </ccontainer>
+  </mcontainer>
+  <br/>
   <br/>
 <% end %>
 
-<br>
 <div class="apple_pagination">
  <%= will_paginate @results.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')%>
 </div>
 
-<%= link_to 'Home', root_path %>
 
-
-<% end %>
