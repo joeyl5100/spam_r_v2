@@ -5,9 +5,11 @@ Rails.application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   
-# set up the email address the app is going to use
-  config.action_mailer.default_url_options = { host: 'https://mail-project-lederman17.c9users.io' }
+# settup the email address the app is going to use
 
+# Use top config for cloud 9
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+   
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
