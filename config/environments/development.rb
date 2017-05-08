@@ -7,14 +7,13 @@ Rails.application.configure do
   
 # settup the email address the app is going to use
 
-# Use top config for cloud 9
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
-   
+# change to match your cloud 9 
+  config.action_mailer.default_url_options = { host: 'https://mail-project-lederman17.c9users.io' }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     user_name:     'csc322emailarchive@gmail.com',
-    password:      'password12345',
+    password:      'Anklegun322',
     domain:        'gmail.com',
     address:       'smtp.gmail.com',
     port:          '587',

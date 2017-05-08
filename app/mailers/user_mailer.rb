@@ -7,7 +7,7 @@ class UserMailer < ApplicationMailer
     retriever_method :pop3, :address    => "pop.gmail.com",
                             :port       => 995,
                             :user_name  => 'csc322emailarchive',
-                            :password   => 'password12345',
+                            :password   => 'Anklegun322',
                             :enable_ssl => true
   end
 
@@ -47,7 +47,7 @@ class UserMailer < ApplicationMailer
   def getContent(mail)
 #Converts some characters back to what they should be
     text = mail.text_part.body.decoded
-    text.encode!("UTF-8", "Windows-1252")
+    text.encode!("UTF-8", "Windows-1250")
     text.gsub!("â€™", "\'") #fixes apostrophe bug for parsing
     text.gsub!(/(\n){3,}/, "\n\n")  #remove excess newlines
     return text
