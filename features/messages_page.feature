@@ -28,9 +28,9 @@ Feature: Viewing messages page
     Then I go to Home page
     
   Scenario: Viewing show page for particular email
-    Given I am on Show page
-    And I have a populated database
+    Given I have a populated database
     And I am logged in as user
+    And I am on Show page
     And I should see /Back/ 1 times
     And I should see /Tags:/ 1 times
     And I should see "example1@grinnell.edu"

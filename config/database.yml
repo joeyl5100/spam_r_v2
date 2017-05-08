@@ -4,7 +4,7 @@ default: &default
   encoding: unicode
   pool: 5
   username: csc322emailarchive
-  password: password12345
+  password: 'Anklegun322'
   timeout: 5000
   host: localhost
   
