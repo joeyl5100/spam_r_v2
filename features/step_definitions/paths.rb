@@ -36,7 +36,7 @@ module NavigationHelpers
             messages_url << "/15"
         when /Faulty Tag/
             messages_url << "?tag=aoesunth.nstphsnt.,hpnstabeusneotasntuhsnaeou"
-         when /Example1 Search/   
+        when /Example1 Search/   
             messages_url << "?utf8=✓&q%5Bauthor_cont%5D=example1&q%5Bsubject_cont%5D=&q%5Bcontent_cont%5D=&commit=Search"
         when /Example One Search/   
             messages_url << "?q%5Bauthor_cont%5D=example1&q%5Bsubject_cont%5D=&q%5Bcontent_cont%5D=&q%5Bcreated_at_gteq%5D=&q%5Bcreated_at_lteq%5D=&commit=Search"

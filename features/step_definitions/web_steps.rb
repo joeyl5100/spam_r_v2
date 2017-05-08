@@ -72,6 +72,7 @@ end
 When(/^I have a populated database$/) do
   m1 = Message.new
   m1.author = "example1@grinnell.edu"
+  m1.id = 1
   m1.subject = "Example1"
   m1.content = "Content1"
   m1.tag_list.add("Talk")
