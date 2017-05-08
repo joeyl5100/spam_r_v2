@@ -27,7 +27,7 @@ module NavigationHelpers
         when /Misc Search/
             messages_url << "?tag=Misc."
         when /Show/
-            messages_url << "1"
+            messages_url << "/1"
         when /Second/
             messages_url << "?page=2"
         when /First/
