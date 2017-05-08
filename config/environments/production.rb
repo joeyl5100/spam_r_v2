@@ -16,7 +16,8 @@ Rails.application.configure do
     authentication: :plain
   }
 
-
+  # code to restart server if you receive error: PG::ConnectionBad could not...
+  #   sudo service postgresql restart
 
   # Code is not reloaded between requests.
   config.cache_classes = true
