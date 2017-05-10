@@ -33,7 +33,7 @@
 <h3> Search by tag</h3>
 
 
-<% ActsAsTaggableOn::Tag.all.each do |tag|%>
+<% ActsAsTaggableOn::Tag.all.sort.each do |tag|%>
   <%= link_to String(tag), messages_url << "?tag=" << String(tag), { :class=>"tags-home" } %>
 <% end %>
 
